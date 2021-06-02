@@ -1,0 +1,2 @@
+class PostAssessmentsController < ApplicationController
+end
