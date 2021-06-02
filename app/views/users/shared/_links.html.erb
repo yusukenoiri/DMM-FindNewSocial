@@ -1,13 +1,32 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+　<h5 class="ml-4 mt-5 bg-light d-inline-flex">既に登録済みの方</h5>
+　<div class="col-lg-12 mt-3 ml-5 mb-5">
+    <%= link_to "こちら", new_session_path(resource_name) %>
+  　からログインしてください
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <div class="row">
+    <div class="col">
+      <p class="d-inline-flex">登録がお済でない方は</p>
+    </div>
+    <div class="col">
+      <%= link_to "こちら", new_registration_path(resource_name), class:"ml-5" %>
+      <p class="d-lg-inline">から新規登録を行ってください。</p>
+    </div>
+  </div>
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+  <div class="row">
+    <div class="col">
+      <p class="d-inline-flex">パスワードをお忘れの方はこちらへ</p>
+    </div>
+    <div class="col">
+　　  <%= link_to "こちらからパスワードのリセット", new_password_path(resource_name) %><br />
+    </div>
+  </div>
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
