@@ -1,1 +1,13 @@
 <h2>New Post Page</h2>
+<div class="row">
+  <div class="col">
+    <h5 class="text-dark bg-light p-4 mb-0">投稿フォーム</h5>
+    <%= form_with model: @post, local:true do |f| %>
+        <%= f.select :genre_id, Genre.genres.keys.to_a, autocomplete: "ジャンル" %>
+        <%= f.text_field :title, class:"form-control", placeholder:"Title" %>
+        <%= f.text_area :body, class:"form-control", placeholder:"投稿をここに" %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+    <% end %>
+  </div>
+</div>

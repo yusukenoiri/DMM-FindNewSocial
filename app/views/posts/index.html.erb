@@ -1,0 +1,44 @@
+<!--main-visual部分-->
+<div class="row main-visual">
+  <div class="col-md-4 main-visual-content d-flex align-items-center">
+    <p class="main-visual-text text-white">
+      The world is a book and those who do not travel read only one page.
+      <br>St. Augustine
+    </p>
+  </div>
+</div>
+
+<div class="row main">
+  <div class="col-md-9 post">
+    <h2 class="blog-heading text-center mt-3">Post TimeLine</h2>
+     <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Catergory</th>
+          <th>Title</th>
+          <th>Post content</th>
+          <th>Who's post</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.created_at.to_s(:datetime_jp) %></td>
+          <td><%= post.genre_id %></td>
+          <td><%= post.title %></td>
+          <td><%= post.body %></td>
+          <td><%= post.user_id %></td>
+        </tr>
+        <% end %>
+      </tbody>
+     </table>
+  </div>
+  <div class="col-md-3 sidebar">
+    <p>他のサイトへのリンク</p>
+    <p>カテゴリー別へのリンク</p>
+  </div>
+
+</div>
+
+
