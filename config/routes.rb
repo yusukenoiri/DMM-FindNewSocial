@@ -20,11 +20,11 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :new, :create, :destroy] do
     resources :post_assessments, only: [:update, :create, :destroy]
+    resources :comments, only: [:update, :create, :destroy, :new] do
+      resources :comment_assessments, only: [:update, :create, :destroy]
+    end
   end
 
-  resources :comments, only: [:update, :create, :destroy] do
-    resources :comment_assessments, only: [:update, :create, :destroy]
-  end
 
   resources :users, only: [:show, :edit, :update] do
     collection do

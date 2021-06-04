@@ -1,44 +1,56 @@
+<div id="comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
 <!--main-visual部分-->
 <div class="row main-visual">
   <div class="col-md-4 main-visual-content d-flex align-items-center">
     <p class="main-visual-text text-white">
-      The world is a book and those who do not travel read only one page.
-      <br>St. Augustine
+      Text will be inserted here later,
+      <br>to expain this app.
     </p>
   </div>
 </div>
 
-<div class="row main">
-  <div class="col-md-9 post">
-    <h2 class="blog-heading text-center mt-3">Post TimeLine</h2>
-     <table class="table table-hover table-inverse">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Catergory</th>
-          <th>Title</th>
-          <th>Post content</th>
-          <th>Who's post</th>
-        </tr>
-      </thead>
-      <tbody>
+<div class="card-body">
+  <div class="row main">
+    <div class="col-md-9 post">
+      <h2 class="blog-heading text-center mt-3">Post TimeLine</h2>
+      <div class="card-list-containar py-5">
         <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.created_at.to_s(:datetime_jp) %></td>
-          <td><%= post.genre_id %></td>
-          <td><%= post.title %></td>
-          <td><%= post.body %></td>
-          <td><%= post.user_id %></td>
-        </tr>
+        <div class="card w-auto mx-auto mt-4 shadow-lg">
+          <div class="row card-body">
+
+            <div class="col-2">
+              <%= link_to posts_path do %>
+                <%= post.user_id %><br>
+                <%= post.user_id %>
+              <% end %>
+            </div>
+
+            <div class="col-10">
+              <table>
+                <tr>
+                  <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
+                </tr>
+                <tr>
+                  <td><div class="card-text">投稿：<%= post.body %></div></td>
+                </tr>
+                <tr>
+                  <td><div>♥♡いいね機能</div></td>
+                  <td><div class="far fa-meh">うーん</div></td>
+                  <td><div>コメント数：<%= post.comments.count %></div></td>
+                  <td><%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %></td>
+                </tr>
+              </table>
+            </div>
+
+             </div>
+            </div>
         <% end %>
-      </tbody>
-     </table>
+          </div>
+        </div>
+    <div class="col-md-3 sidebar">
+      <p>他のサイトへのリンク</p>
+      <p>カテゴリー別へのリンク</p>
+    </div>
   </div>
-  <div class="col-md-3 sidebar">
-    <p>他のサイトへのリンク</p>
-    <p>カテゴリー別へのリンク</p>
-  </div>
-
 </div>
-
-
