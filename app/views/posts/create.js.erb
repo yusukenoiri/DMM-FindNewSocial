@@ -1,0 +1,6 @@
+<% if @status == 'success' %>
+    $("tbody").append("<%= j(render("tr", post: @post)) %>");
+<%  elsif @status == 'fail' %>
+    alert('error!');
+<% end %>
+$("#post-modal").modal("hide");

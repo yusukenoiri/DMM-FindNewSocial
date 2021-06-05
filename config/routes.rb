@@ -18,19 +18,18 @@ Rails.application.routes.draw do
     resources :posts, only: [:index]
   end
 
-  resources :posts, only: [:index, :new, :create, :destroy] do
-    resources :post_assessments, only: [:update, :create, :destroy]
+  resources :posts, only: [:index, :new, :create, :destroy, :show] do
+    resource :post_assessments, only: [:create, :destroy]
     resources :comments, only: [:update, :create, :destroy, :new] do
-      resources :comment_assessments, only: [:update, :create, :destroy]
+      resource :comment_assessments, only: [:create, :destroy]
     end
   end
-
 
   resources :users, only: [:show, :edit, :update] do
     collection do
       patch 'hide'
       get 'confirm'
-   end
+    end
   end
 
   root :to => 'homes#top'

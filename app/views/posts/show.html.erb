@@ -6,57 +6,54 @@
 <div class="card-body">
   <div class="row main">
     <div class="col-md-9 post">
-      <h2 class="blog-heading text-center mt-3">Post TimeLine</h2>
+      <h2 class="blog-heading text-center mt-3">PostShow</h2>
       <div class="card-list-containar py-5">
-        <% @posts.each do |post| %>
         <div class="card w-auto mx-auto mt-4 shadow-lg">
           <div class="row card-body">
 
             <div class="col-2">
               <%= link_to posts_path do %>
-                <%= post.user_id %><br>
-                <%= post.user_id %>
+                <%= @post.user_id %><br>
+                <%= @post.user_id %>
               <% end %>
             </div>
 
             <div class="col-10">
               <table>
                 <tr>
-                  <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
+                  <th class="fas fa-user">User名：<%= @post.user_id %>ジャンル：<%= @post.genre_id %><%= @post.created_at.to_s(:datetime_jp) %></th>
                 </tr>
                 <tr>
-                  <td><div class="card-text">投稿：<%= post.body %></div></td>
+                  <td><div class="card-text">投稿：<%= @post.body %></div></td>
                 </tr>
                 <tr>
                   <td>
-                      <% if post.favorited_by?(current_user) %>
+                      <% if @post.favorited_by?(current_user) %>
                       <p>
-                        <%= link_to post_post_assessments_path(post), method: :delete do %>
-                          ♥<%= post.post_assessments.count %> いいね
+                        <%= link_to post_post_assessments_path(@post), method: :delete do %>
+                          ♥<%= @post.post_assessments.count %> いいね
                         <% end %>
                       </p>
                       <% else %>
                       <p>
-                        <%= link_to post_post_assessments_path(post), method: :post do %>
-                          ♡<%= post.post_assessments.count %> いいね
+                        <%= link_to post_post_assessments_path(@post), method: :post do %>
+                          ♡<%= @post.post_assessments.count %> いいね
                         <% end %>
                       </p>
                     <% end %>
                   </td>
                   <td><div class="far fa-meh">うーん</div></td>
                   <td>
-                    <%= link_to post_post_assessments_path(post), method: :post do %>
-                    <div>コメント数：<%= post.comments.count %></div>
+                    <%= link_to post_post_assessments_path(@post), method: :post do %>
+                      <div>コメント数：<%= @post.comments.count %></div>
                     <% end %>
                   </td>
-                  <td><%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %></td>
+                  <td><%= link_to "コメントする", new_post_comment_path(@post), remote: true, class: "btn btn-lg, btn-primary" %></td>
                 </tr>
               </table>
             </div>
-
              </div>
             </div>
-        <% end %>
           </div>
         </div>
       <div class="col-md-3 sidebar">

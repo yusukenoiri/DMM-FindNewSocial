@@ -9,10 +9,19 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    if @post.save
-      redirect_to posts_path
-    else
-      render :new
+
+      respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: 'Cooment was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+        # 追加
+        format.js { @status = "success" }
+      else
+        format.html { render :new }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+        # 追加
+        format.js { @status = "fail" }
+      end
     end
   end
 
@@ -20,6 +29,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @commens = @post.comments
   end
 
   def post_params

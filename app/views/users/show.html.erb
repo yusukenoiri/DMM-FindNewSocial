@@ -1,2 +1,96 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= render 'layouts/mainvisual', user: @user %>
+<div id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+  <div class="profile-body">
+    <div class="row main">
+      <div class="col-md-9 post">
+        <h2 class="blog-heading text-center mt-3">User Profile</h2>
+        <div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="col-xs-2 table-secondary">ニックネーム</td>
+              <td><%= @user.nick_name %>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">氏名</td>
+              <td><%= @user.family_name %> <%= @user.first_name %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">カナ</td>
+              <td><%= @user.family_name_kana %> <%= @user.first_name_kana %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">電話番号</td>
+              <td><%= @user.phone_number %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">Email</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">都道府県</td>
+              <td><%= @user.address %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">職業</td>
+              <td><%= @user.occupation %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card-body">
+          <div class="row main">
+            <div class="col-md-12 post">
+              <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'s Post TimeLine</h2>
+              <div class="card-list-containar py-5">
+                <% @posts.each do |post| %>
+                <div class="card w-auto mx-auto mt-4 shadow-lg">
+                  <div class="row card-body">
+
+                    <div class="col-2">
+                      <%= link_to posts_path do %>
+                        <%= post.user_id %><br>
+                        <%= post.user_id %>
+                      <% end %>
+                    </div>
+
+                    <div class="col-10">
+                      <table>
+                        <tr>
+                          <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
+                        </tr>
+                        <tr>
+                          <td><div class="card-text">投稿：<%= post.body %></div></td>
+                        </tr>
+                        <tr>
+                          <td>
+                              <% if post.favorited_by?(current_user) %>
+                              <p>
+                                  ♥<%= post.post_assessments.count %> いいね
+                              </p>
+                              <% else %>
+                              <p>
+                                  ♡<%= post.post_assessments.count %> いいね
+                              </p>
+                            <% end %>
+                          </td>
+                          <td><div class="far fa-meh">うーん</div></td>
+                          <td><div>コメント数：<%= post.comments.count %></div></td>
+                        </tr>
+                      </table>
+                    </div>
+                     </div>
+                    </div>
+                <% end %>
+                  </div>
+                </div>
+          </div>
+        </div>
+
+    </div>
+      <div class="col-md-3 sidebar">
+  　　　 <%= render 'layouts/sidebar', post: @posts %>
+  　　　</div>
+    </div>
+  </div>
