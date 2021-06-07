@@ -86,3 +86,7 @@ gem 'omniauth-instagram'
 gem 'chartkick'
 gem 'rails-ujs'
 gem 'dotenv-rails'
+
+group :production do
+  gem 'mysql2'
+end
