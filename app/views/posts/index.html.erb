@@ -22,14 +22,14 @@
             <div class="col-10">
               <table>
                 <tr>
-                  <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
+                  <th class="fas fa-user">User名：<%= post.user.nick_name %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
                 </tr>
                 <tr>
                   <td><div class="card-text">投稿：<%= post.body %></div></td>
                 </tr>
                 <tr>
                   <td>
-                      <% if post.favorited_by?(current_user) %>
+                    <% if post.post_favorited_by?(current_user) %>
                       <p>
                         <%= link_to post_post_assessments_path(post), method: :delete do %>
                           ♥<%= post.post_assessments.count %> いいね
@@ -43,9 +43,23 @@
                       </p>
                     <% end %>
                   </td>
-                  <td><div class="far fa-meh">うーん</div></td>
                   <td>
-                    <%= link_to post_post_assessments_path(post), method: :post do %>
+                    <% if post.comment_favorited_by?(current_user, post) %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
+                          <%= post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                      <% else %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
+                          <%= post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to post_path(post), method: :get do %>
                     <div>コメント数：<%= post.comments.count %></div>
                     <% end %>
                   </td>

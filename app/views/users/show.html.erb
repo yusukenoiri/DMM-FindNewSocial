@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                           <td>
-                              <% if post.favorited_by?(current_user) %>
+                              <% if post.post_favorited_by?(current_user) %>
                               <p>
                                   ♥<%= post.post_assessments.count %> いいね
                               </p>
@@ -76,7 +76,11 @@
                             <% end %>
                           </td>
                           <td><div class="far fa-meh">うーん</div></td>
-                          <td><div>コメント数：<%= post.comments.count %></div></td>
+                          <td>
+                            <%= link_to post_path(post), method: :get do %>
+                            <div>コメント数：<%= post.comments.count %></div>
+                            <% end %>
+                          </td>
                         </tr>
                       </table>
                     </div>

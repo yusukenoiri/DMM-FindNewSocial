@@ -21,14 +21,14 @@
             <div class="col-10">
               <table>
                 <tr>
-                  <th class="fas fa-user">User名：<%= @post.user_id %>ジャンル：<%= @post.genre_id %><%= @post.created_at.to_s(:datetime_jp) %></th>
+                  <th class="fas fa-user">User名：<%= @post.user.nick_name %>ジャンル：<%= @post.genre_id %><%= @post.created_at.to_s(:datetime_jp) %></th>
                 </tr>
                 <tr>
                   <td><div class="card-text">投稿：<%= @post.body %></div></td>
                 </tr>
                 <tr>
                   <td>
-                      <% if @post.favorited_by?(current_user) %>
+                      <% if @post.post_favorited_by?(current_user) %>
                       <p>
                         <%= link_to post_post_assessments_path(@post), method: :delete do %>
                           ♥<%= @post.post_assessments.count %> いいね
@@ -52,10 +52,48 @@
                 </tr>
               </table>
             </div>
-             </div>
+          </div>
+          <h3 class="blog-heading text-center mt-3">PostComment</h3>
+          <% @comments.each do |comment| %>
+          <div class="row comment-card-body">
+            <div class="col-2">
+              <%= link_to posts_path do %>
+                <%= comment.user_id %><br>
+              <% end %>
+            </div>
+            <div class="col-10">
+              <table>
+                <tr>
+                  <th class="fas fa-user">User名：<%= comment.user_id %><%= comment.created_at.to_s(:datetime_jp) %></th>
+                </tr>
+                <tr>
+                  <td><div class="card-text">コメント：<%= comment.body %></div></td>
+                </tr>
+                <tr>
+                  <td>
+                      <% if comment.comment_favorited_by?(current_user, comment) %>
+                      <p>
+                        <%= link_to post_comment_comment_assessments(@post, comment), method: :delete do %>
+                          ♥<%= comment.comment_assessments.count %> いいね
+                        <% end %>
+                      </p>
+                      <% else %>
+                      <p>
+                        <%= link_to post_comment_comment_assessments_path(@post, comment), method: :post do %>
+                          ♡<%= comment.comment_assessments.count %> いいね
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </td>
+                  <td><div class="far fa-meh">うーん</div></td>
+                </tr>
+              </table>
             </div>
           </div>
+          <% end %>
         </div>
+      </div>
+    </div>
       <div class="col-md-3 sidebar">
 　　　 <%= render 'layouts/sidebar', post: @posts %>
 　　　</div>

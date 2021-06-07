@@ -19,6 +19,7 @@
           <li><%= link_to ' TimeLine', posts_path,class: 'nav-link text-white fas fa-birthday-cake' %></li>
           <li><%= link_to ' MyPage', user_path(current_user),class: 'nav-link text-white fas fa-user-circle' %></li>
           <li><%= link_to ' LogOut', destroy_user_session_path, method: :delete,class: 'nav-link text-white fas fa-sign-out-alt' %></li>
+          <li><%= link_to ' Genres', genres_path,class: 'nav-link text-white fas fa-birthday-cake' %></li>
           <% if current_page?(controller: 'posts', action: 'index') %>
             <li><%= link_to ' NewPost', new_post_path, method: :get, remote: true, class: 'nav-link text-white fas fa-sign-out-alt' %></li>
           <% end %>

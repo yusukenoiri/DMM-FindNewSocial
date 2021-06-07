@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   namespace :admin do
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
       get 'confirm'
     end
   end
+
+  resources :genres, only: [:show, :index]
 
   root :to => 'homes#top'
   get 'homes/about'

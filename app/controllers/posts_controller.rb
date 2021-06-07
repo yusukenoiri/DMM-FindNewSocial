@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @commens = @post.comments
+    @comments = @post.comments
   end
 
   def post_params
