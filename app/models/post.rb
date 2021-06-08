@@ -12,4 +12,5 @@ class Post < ApplicationRecord
     comment_assessments.where(user_id: user.id, post_id: post.id).exists?
   end
 
+  enum genre_id: { 公共交通: 0, インフラ: 1, ヘルスケア: 2, 生活: 3, 地域: 4, その他: 5}
 end
