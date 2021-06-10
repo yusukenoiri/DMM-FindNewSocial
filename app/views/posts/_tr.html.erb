@@ -1,3 +1,35 @@
-<tr>
-　<td><%= post.user_id %></td>
-</tr>
+<div class="row card-body">
+    <div class="col-2">
+      <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+    </div>
+    <div class="col-10">
+    <table>
+      <tr>
+        <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
+      </tr>
+      <tr>
+        <td><div class="card-text">投稿：<%= post.body %></div></td>
+      </tr>
+      <tr>
+        <td>
+            <% if post.post_favorited_by?(current_user) %>
+            <p>
+                ♥<%= post.post_assessments.count %> いいね
+            </p>
+            <% else %>
+            <p>
+                ♡<%= post.post_assessments.count %> いいね
+            </p>
+          <% end %>
+        </td>
+        <td><div class="far fa-meh">うーん</div></td>
+        <td>
+          <%= link_to post_path(post), method: :get do %>
+          <div>コメント数：<%= post.comments.count %></div>
+          <td><%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %></td>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+　 </div>
+</div>

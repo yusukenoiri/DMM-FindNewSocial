@@ -16,7 +16,8 @@ class UsersController < ApplicationController
     @user.update(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Cooment was successfully created.' }
+        redirect_to user_path(@user)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :created, location: @user }
         # 追加
         format.js { @status = "success" }

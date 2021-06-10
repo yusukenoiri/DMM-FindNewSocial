@@ -1,4 +1,4 @@
-<div class="modal-dialog" role="document">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
   <div class="modal-content">
     <%= form_with(model: @post, remote: true) do |f| %>
       <% if @post.errors.any? %>
@@ -21,10 +21,7 @@
         <div class="modal-body">
           <div class="form-group field">
             <%= f.select :genre_id, Genre.genres.keys, {prompt: "選択してください"} %>
-            <%#= f.collection_select :genre_id, Genre.genres.keys.to_a, :id, prompt: "--選択してください--" %>
-            <%#= f.select :genre, :name, Book.genres.keys.to_a, include_blank: true %>
-            <%#= f.select :prefecture, Address.prefectures.keys, {prompt: "選択してください"}, class: "prefecture-select"
-            <%= f.text_field :title, class:"form-control", placeholder:"Title" %>
+            <%= f.text_field :title, class: "form-control", placeholder:"Title" %>
             <%= f.text_area :body, class: "form-control", placeholder:"Post here" %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
           </div>

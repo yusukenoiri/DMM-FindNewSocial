@@ -12,10 +12,7 @@
           <div class="row card-body">
 
             <div class="col-2">
-              <%= link_to posts_path do %>
-                <%= @post.user_id %><br>
-                <%= @post.user_id %>
-              <% end %>
+              <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
             </div>
 
             <div class="col-10">
@@ -54,7 +51,7 @@
             </div>
           </div>
           <h3 class="blog-heading text-center mt-3">PostComment</h3>
-          <% @comments.each do |comment| %>
+          <% @comments.last(10).each do |comment| %>
           <div class="row comment-card-body">
             <div class="col-2">
               <%= link_to posts_path do %>
@@ -91,6 +88,7 @@
             </div>
           </div>
           <% end %>
+          <div id="comment-append" class="comment-card-body"></div>
         </div>
       </div>
     </div>

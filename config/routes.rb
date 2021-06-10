@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :posts, only: [:index]
   end
 
+  namespace :posts do
+    resources :searches, only: :index, defaults: { format: :json }
+  end
+
   resources :posts, only: [:index, :new, :create, :destroy, :show] do
     resource :post_assessments, only: [:create, :destroy]
     resources :comments, only: [:update, :create, :destroy, :new] do

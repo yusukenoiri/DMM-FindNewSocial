@@ -1,11 +1,12 @@
 <%= render 'layouts/mainvisual', user: @user %>
+<div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div class="profile-body">
     <div class="row main">
       <div class="col-md-9 post">
         <h2 class="blog-heading text-center mt-3">User Profile</h2>
         <div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
         <table class="table table-bordered">
           <tbody>
             <tr>
@@ -44,15 +45,14 @@
             <div class="col-md-12 post">
               <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'s Post TimeLine</h2>
               <div class="card-list-containar py-5">
-                <% @posts.each do |post| %>
+                <% @posts.last(10).each do |post| %>
                 <div class="card w-auto mx-auto mt-4 shadow-lg">
                   <div class="row card-body">
 
                     <div class="col-2">
-                      <%= link_to posts_path do %>
-                        <%= post.user_id %><br>
-                        <%= post.user_id %>
-                      <% end %>
+                      <div class="rounded-circle">
+                        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+                      </div>
                     </div>
 
                     <div class="col-10">

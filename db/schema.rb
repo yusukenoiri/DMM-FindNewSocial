@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_114834) do
+ActiveRecord::Schema.define(version: 2021_06_09_075946) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2021_06_06_114834) do
     t.string "family_name_kana"
     t.string "profile_image_id"
     t.integer "occupation"
-    t.string "address"
+    t.integer "address"
     t.string "phone_number"
     t.boolean "is_available", default: false
     t.string "uid"

@@ -1,3 +1,35 @@
-<tr>
-　<td><%= comment.user_id %></td>
-</tr>
+<div class="row comment-card-body">
+<div class="col-2">
+  <%= link_to posts_path do %>
+    <%= comment.user_id %><br>
+  <% end %>
+</div>
+<div class="col-10">
+  <table>
+    <tr>
+      <th class="fas fa-user">User名：<%= comment.user_id %><%= comment.created_at.to_s(:datetime_jp) %></th>
+    </tr>
+    <tr>
+      <td><div class="card-text">コメント：<%= comment.body %></div></td>
+    </tr>
+    <tr>
+      <td>
+          <% if comment.comment_favorited_by?(current_user, comment) %>
+          <p>
+            <%= link_to post_comment_comment_assessments(@post, comment), method: :delete do %>
+              ♥<%= comment.comment_assessments.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_comment_comment_assessments_path(@post, comment), method: :post do %>
+              ♡<%= comment.comment_assessments.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
+      </td>
+      <td><div class="far fa-meh">うーん</div></td>
+    </tr>
+  </table>
+</div>
+</div>

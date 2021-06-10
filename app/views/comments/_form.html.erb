@@ -1,4 +1,4 @@
-<div class="modal-dialog" role="document">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
   <div class="modal-content">
     <%= form_with(model:[@post, @comment], remote: true) do |f| %>
       <% if @comment.errors.any? %>
@@ -20,7 +20,7 @@
 
         <div class="modal-body">
           <div class="form-group field">
-            <%= f.text_area :comment, class: "form-control", placeholder:"Comment here" %>
+            <%= f.text_area :body, class: "form-control", placeholder:"Comment here" %>
           </div>
         </div>
         <div class="modal-footer actions">

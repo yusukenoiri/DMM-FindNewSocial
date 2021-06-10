@@ -29,8 +29,17 @@ class PostsController < ApplicationController
   def destory
   end
 
+  def search
+    respond_to do |format|
+      format.html
+      format.json
+      # json形式で値を返し、jbundlerファイルを使用できるようになる
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
+    @posts = Post.all
     @comments = @post.comments
   end
 
