@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    # @favorites = Post.include(:post_assessments_users).sort {|a,b| b.post_assessments_users.size <=> a.post_assessments_users.size}
   end
 
   def new

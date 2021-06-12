@@ -6,5 +6,7 @@ class GenresController < ApplicationController
     @posts_genre3 = Post.where(genre_id:3)
     @posts_genre4 = Post.where(genre_id:4)
     @posts_genre5 = Post.where(genre_id:5)
+    @posts = Post.all
+    @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
   end
 end

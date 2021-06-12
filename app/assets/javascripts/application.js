@@ -17,6 +17,9 @@
 //= require activestorage
 //= require popper
 //= require bootstrap-sprockets
+//= require chartkick
+//= require Chart.bundle
+
 //= require_tree .
 
 // 画像skipper機能

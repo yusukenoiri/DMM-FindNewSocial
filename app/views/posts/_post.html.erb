@@ -1,5 +1,7 @@
-<li class="post">
-  <%= link_to post_path(post), method: :get do %>
-    <%= post.title %>
-  <% end %>
-</li>
+<% posts.last(0).each do |post| %>
+  <li class="post">
+      <%= link_to post_path(post), method: :get do %>
+        <%= post.title %>
+      <% end %>
+  </li>
+<% end %>

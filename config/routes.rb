@@ -39,6 +39,11 @@ Rails.application.routes.draw do
 
   resources :genres, only: [:show, :index]
 
+  resources :inquiries, only: [:new, :create]
+  post 'inquiries/confirm', to: 'inquiries#confirm', as: 'confirm'
+  post 'inquiries/back', to: 'inquiries#back', as: 'back'
+  get 'done', to: 'inquiries#done', as: 'done'
+
   root :to => 'homes#top'
   get 'homes/about'
 
