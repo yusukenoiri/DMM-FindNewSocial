@@ -5,12 +5,12 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   # def new
-  #   super
+  #   super UserMailer.with(user: @user).welcome_email.deliver_later
   # end
 
   # POST /resource/sign_in
   # def create
-  #   super
+  #   super UserMailer.with(user: @user).welcome_email.deliver_later
   # end
 
   # DELETE /resource/sign_out

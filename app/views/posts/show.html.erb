@@ -2,7 +2,7 @@
 <div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <!--main-visual部分-->
 <%= render 'layouts/mainvisual', post: @posts %>
-
+<!--投稿カード部分-->
 <div class="card-body">
   <div class="row main">
     <div class="col-md-9 post">
@@ -10,11 +10,9 @@
       <div class="card-list-containar py-5">
         <div class="card w-auto mx-auto mt-4 shadow-lg">
           <div class="row card-body">
-
             <div class="col-2">
               <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
             </div>
-
             <div class="col-10">
               <table>
                 <tr>
@@ -39,7 +37,21 @@
                       </p>
                     <% end %>
                   </td>
-                  <td><div class="far fa-meh">うーん</div></td>
+                  <td>
+                    <% if @post.comment_favorited_by?(current_user, @post) %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :delete do %>
+                          <%= @post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                      <% else %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :post do %>
+                          <%= @post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </td>
                   <td>
                     <%= link_to post_post_assessments_path(@post), method: :post do %>
                       <div>コメント数：<%= @post.comments.count %></div>
@@ -68,7 +80,7 @@
                 </tr>
                 <tr>
                   <td>
-                      <% if comment.comment_favorited_by?(current_user, comment) %>
+                    <% if comment.comment_favorited_by?(current_user, comment) %>
                       <p>
                         <%= link_to post_comment_comment_assessments(@post, comment), method: :delete do %>
                           ♥<%= comment.comment_assessments.count %> いいね
@@ -82,7 +94,21 @@
                       </p>
                     <% end %>
                   </td>
-                  <td><div class="far fa-meh">うーん</div></td>
+                  <td>
+                    <% if @post.comment_favorited_by?(current_user, @post) %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :delete do %>
+                          <%= @post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                      <% else %>
+                      <p class="far fa-meh">
+                        <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :post do %>
+                          <%= @post.comment_assessments.count %>うーん
+                        <% end %>
+                      </p>
+                    <% end %>
+                  </td>
                 </tr>
               </table>
             </div>

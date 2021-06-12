@@ -310,4 +310,7 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
   config.omniauth :facebook, ENV['FACEBOOK_API_KEY'], ENV['FACEBOOK_API_SECRET']
   # config.omniauth :twitter, 'API key', 'API secret'
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email', redirect_uri: "#{ENV['HOST']}/users/auth/google_oauth2/callback"
+  # config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email', redirect_uri: "http://localhost/users/auth/google_oauth2/callback:3000"
+  OmniAuth.config.logger = Rails.logger if Rails.env.development? # debug用
 end
