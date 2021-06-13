@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td>
-          <% if comment.comment_favorited_by?(current_user, comment) %>
+        <% if comment.comment_favorited_by?(current_user, comment) %>
           <p>
             <%= link_to post_comment_comment_assessments(@post, comment), method: :delete do %>
               ♥<%= comment.comment_assessments.count %> いいね
@@ -28,7 +28,21 @@
           </p>
         <% end %>
       </td>
-      <td><div class="far fa-meh">うーん</div></td>
+      <td>
+        <% if @post.comment_favorited_by?(current_user, @post) %>
+          <p class="far fa-meh">
+            <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :delete do %>
+              <%= @post.comment_assessments.count %>うーん
+            <% end %>
+          </p>
+          <% else %>
+          <p class="far fa-meh">
+            <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :post do %>
+              <%= @post.comment_assessments.count %>うーん
+            <% end %>
+          </p>
+        <% end %>
+      </td>
     </tr>
   </table>
 </div>

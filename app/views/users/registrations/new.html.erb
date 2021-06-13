@@ -52,8 +52,21 @@
     <div class="row">
       <label class="col">住んでいるところ</label>
       <div class="col">
-        <%#= f.text_field :address, autocomplete: "address", placeholder: "都道府県" %>
         <%= f.select :address, User.addresses.keys.to_a, placeholder: "都道府県" %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <label class="col">性別</label>
+      <div class="col">
+        <%= f.select :sex, User.sexes.keys.to_a, placeholder: "性別" %>
+      </div>
+    </div><br>
+
+    <div class="row">
+      <label class="col">年代</label>
+      <div class="col">
+        <%= f.select :generations, User.generations.keys.to_a, placeholder: "年代" %>
       </div>
     </div><br>
 
@@ -63,14 +76,14 @@
         <em>(<%= @minimum_password_length %>文字以上)</em>
       <% end %></label>
       <div class="col">
-        <%= f.password_field :password, autocomplete: "encrypted_password" %>
+        <%= f.password_field :password, autocomplete: "encrypted_password", placeholder: "パスワード" %>
       </div>
     </div><br>
 
     <div class="row">
       <label class="col">パスワード（確認用）</label>
       <div class="col">
-        <%= f.password_field :password_confirmation, autocomplete: "encrypted_password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "encrypted_password", placeholder: "パスワード確認用" %>
       </div>
     </div><br>
 

@@ -23,15 +23,17 @@
             <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
             <label for="inputImage">ProfileImage</label>
             <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-            <%= f.select :occupation, User.occupations.keys.to_a, autocomplete: "職業" %>
             <%= f.text_field :nick_name, class:"form-control", placeholder:"ニックネーム" %>
             <%= f.text_field :first_name, class:"form-control", placeholder:"名前" %>
             <%= f.text_field :first_name_kana, class:"form-control", placeholder:"名前カナ" %>
             <%= f.text_field :family_name, class:"form-control", placeholder:"苗字" %>
             <%= f.text_field :family_name_kana, class:"form-control", placeholder:"苗字カナ" %>
-            <%= f.text_field :address, class:"form-control", placeholder:"都道府県" %>
             <%= f.text_field :phone_number, class:"form-control", placeholder:"電話番号" %>
             <%= f.text_field :email, class: "form-control", placeholder:"Email" %>
+            <%= f.select :occupation, User.occupations.keys.to_a, autocomplete: "職業" %>
+            <%= f.select :address, User.addresses.keys.to_a, placeholder:"都道府県" %>
+            <%= f.select :generations, User.generations.keys.to_a, autocomplete: "年代" %>
+            <%= f.select :sex, User.sexes.keys.to_a, autocomplete: "性別" %>
           </div>
         </div>
         <div class="modal-footer actions">

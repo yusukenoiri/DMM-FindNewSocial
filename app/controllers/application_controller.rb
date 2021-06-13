@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
       :email,
       :occupation,
       :address,
+      :sex,
+      :generations
       ])
   end
 

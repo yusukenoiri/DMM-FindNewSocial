@@ -4,9 +4,16 @@
   <div class="profile-body">
     <div class="row main">
       <div class="col-md-9 post">
-        <h2 class="blog-heading text-center mt-3">User Profile</h2>
-        <div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
-          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+        <h2 class="blog-heading text-center mt-3">MyPage</h2>
+        
+        <table>
+          <tr>
+            <td><%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %></td>
+            <td>intro</td>
+            <td><div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div></td>
+          </tr>
+        </table>
+
         <table class="table table-bordered">
           <tbody>
             <tr>
@@ -36,6 +43,14 @@
             <tr>
               <td class="col-xs-2 table-secondary">職業</td>
               <td><%= @user.occupation %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">性別</td>
+              <td><%= @user.sex %></td>
+            </tr>
+            <tr>
+              <td class="col-xs-2 table-secondary">年代</td>
+              <td><%= @user.generations %></td>
             </tr>
           </tbody>
         </table>

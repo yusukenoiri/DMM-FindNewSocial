@@ -5,6 +5,21 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :email, 'Mail*' %>
+    <%= f.text_field :email, size: '10x10', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone_number, 'Tel*' %>
+    <%= f.text_field :phone_number, size: '10x10', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :subject, '用件*' %>
+    <%= f.select :subject, Inquiry.subjects.keys.to_a, size: '10x10', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :message, 'メッセージ*' %>
     <%= f.text_area :message, size: '10x10', class: 'form-control' %>
   </div>

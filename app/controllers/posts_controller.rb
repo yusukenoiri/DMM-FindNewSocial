@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-    # @favorites = Post.include(:post_assessments_users).sort {|a,b| b.post_assessments_users.size <=> a.post_assessments_users.size}
   end
 
   def new
@@ -41,8 +40,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
     @comments = @post.comments
+    @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
   end
 
   def post_params
