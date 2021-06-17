@@ -6,13 +6,15 @@
 <div class="card-body">
   <div class="row main">
     <div class="col-md-9 post">
-      <h2 class="blog-heading text-center mt-3">PostTimeLine</h2>
-      <div class="card-list-containar py-5">
+      <h2 class="blog-heading text-center mt-1">PostTimeLine</h2>
+      <div class="card-list-containar py-1">
         <% @posts.last(10).each do |post| %>
         <div class="card w-auto mx-auto mt-4 shadow-lg">
           <div class="row card-body">
-            <div class="col-2">
-              <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+            <div class="col-2 ">
+              <%= link_to user_path(post.user_id), method: :get do %>
+                <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+              <% end %>
             </div>
             <div class="col-10">
               <table>
@@ -23,36 +25,50 @@
                   <td><div class="card-text">投稿：<%= post.body %></div></td>
                 </tr>
                 <tr>
-                  <td>
-                    <% if post.post_favorited_by?(current_user) %>
+                  <% if user_signed_in? %>
+                    <td>
+                      <% if post.post_favorited_by?(current_user) %>
+                        <p>
+                          <%= link_to post_post_assessments_path(post), method: :delete do %>
+                            ♥<%= post.post_assessments.count %> いいね
+                          <% end %>
+                        </p>
+                        <% else %>
+                        <p>
+                          <%= link_to post_post_assessments_path(post), method: :post do %>
+                            ♡<%= post.post_assessments.count %> いいね
+                          <% end %>
+                        </p>
+                      <% end %>
+                    </td>
+                    <% else %>
+                    <td>
                       <p>
-                        <%= link_to post_post_assessments_path(post), method: :delete do %>
-                          ♥<%= post.post_assessments.count %> いいね
-                        <% end %>
+                        ♥<%= post.post_assessments.count %> いいね
                       </p>
-                      <% else %>
-                      <p>
-                        <%= link_to post_post_assessments_path(post), method: :post do %>
-                          ♡<%= post.post_assessments.count %> いいね
-                        <% end %>
-                      </p>
-                    <% end %>
-                  </td>
-                  <td>
-                    <% if post.comment_favorited_by?(current_user, post) %>
-                      <p class="far fa-meh">
-                        <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
-                          <%= post.comment_assessments.count %>うーん
-                        <% end %>
-                      </p>
-                      <% else %>
-                      <p class="far fa-meh">
-                        <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
-                          <%= post.comment_assessments.count %>うーん
-                        <% end %>
-                      </p>
-                    <% end %>
-                  </td>
+                    </td>
+                  <% end %>
+                  <% if user_signed_in? %>
+                    <td>
+                      <% if post.comment_favorited_by?(current_user, post) %>
+                        <p class="far fa-meh">
+                          <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
+                            <%= post.comment_assessments.count %>うーん
+                          <% end %>
+                        </p>
+                        <% else %>
+                        <p class="far fa-meh">
+                          <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
+                            <%= post.comment_assessments.count %>うーん
+                          <% end %>
+                        </p>
+                      <% end %>
+                    </td>
+                  <% else %>
+                    <p class="far fa-meh">
+                      <%= post.comment_assessments.count %>うーん
+                    </p>
+                  <% end %>
                   <td>
                     <%= link_to post_path(post), method: :get do %>
                     <div>コメント数：<%= post.comments.count %></div>
@@ -61,11 +77,6 @@
                   <td><%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %></td>
                 </tr>
               </table>
-              <%# if user_signed_in? %>
-                <%#= render 'posts/signin' %>
-              <%# else %>
-                <%#= render 'posts/nosignin' %>
-              <%# end %>
             </div>
           </div>
         </div>
@@ -73,7 +84,7 @@
         <div id="table-append" class="card w-auto mx-auto mt-4 shadow-lg"></div>
           </div>
         </div>
-      <div class="col-md-3 sidebar">
+      <div class="col-md-3 sidebar border-left">
 　　　 <%= render 'layouts/sidebar', post: @posts %>
 　　　</div>
   </div>

@@ -4,15 +4,25 @@
   <div class="profile-body">
     <div class="row main">
       <div class="col-md-9 post">
-        <h2 class="blog-heading text-center mt-3">MyPage</h2>
-        
-        <table>
-          <tr>
-            <td><%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %></td>
-            <td>intro</td>
-            <td><div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div></td>
-          </tr>
-        </table>
+        <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'sPage</h2>
+
+        <% if user_signed_in? && @user == current_user %>
+        <div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
+        <% end %>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 border">
+              <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+            </div>
+            <div class="col-md-8 border">
+              <div>
+                <h3>Introduction</h3>
+                <p><%= @user.introduction %></p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <table class="table table-bordered">
           <tbody>
@@ -27,10 +37,6 @@
             <tr>
               <td class="col-xs-2 table-secondary">カナ</td>
               <td><%= @user.family_name_kana %> <%= @user.first_name_kana %></td>
-            </tr>
-            <tr>
-              <td class="col-xs-2 table-secondary">電話番号</td>
-              <td><%= @user.phone_number %></td>
             </tr>
             <tr>
               <td class="col-xs-2 table-secondary">Email</td>
@@ -50,7 +56,7 @@
             </tr>
             <tr>
               <td class="col-xs-2 table-secondary">年代</td>
-              <td><%= @user.generations %></td>
+              <td><%= @user.generation %></td>
             </tr>
           </tbody>
         </table>
@@ -58,7 +64,7 @@
         <div class="card-body">
           <div class="row main">
             <div class="col-md-12 post">
-              <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'s Post TimeLine</h2>
+              <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'s PostHistory</h2>
               <div class="card-list-containar py-5">
                 <% @user_posts.last(10).each do |post| %>
                 <div class="card w-auto mx-auto mt-4 shadow-lg">
@@ -105,7 +111,7 @@
               </div>
             </div>
         </div>
-      <div class="col-md-3 sidebar">
+      <div class="col-md-3 sidebar border-left">
   　　　 <%= render 'layouts/sidebar', post: @posts %>
   　　　</div>
     </div>

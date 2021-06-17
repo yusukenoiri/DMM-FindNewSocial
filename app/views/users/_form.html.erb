@@ -20,15 +20,15 @@
 
         <div class="modal-profile">
           <div class="form-group field">
-            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+            <%= attachment_image_tag @user, :profile_image, :fill, 90, 90, fallback: "no_image.jpg", style: "border-radius:50%;}"%>
             <label for="inputImage">ProfileImage</label>
             <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+            <%= f.text_area :introduction, class:"form-control", placeholder:"紹介文を記載ください" %>
             <%= f.text_field :nick_name, class:"form-control", placeholder:"ニックネーム" %>
             <%= f.text_field :first_name, class:"form-control", placeholder:"名前" %>
             <%= f.text_field :first_name_kana, class:"form-control", placeholder:"名前カナ" %>
             <%= f.text_field :family_name, class:"form-control", placeholder:"苗字" %>
             <%= f.text_field :family_name_kana, class:"form-control", placeholder:"苗字カナ" %>
-            <%= f.text_field :phone_number, class:"form-control", placeholder:"電話番号" %>
             <%= f.text_field :email, class: "form-control", placeholder:"Email" %>
             <%= f.select :occupation, User.occupations.keys.to_a, autocomplete: "職業" %>
             <%= f.select :address, User.addresses.keys.to_a, placeholder:"都道府県" %>

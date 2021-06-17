@@ -11,7 +11,9 @@
         <div class="card w-auto mx-auto mt-4 shadow-lg">
           <div class="row card-body">
             <div class="col-2">
-              <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+              <%= link_to user_path(@post.user_id), method: :get do %>
+                <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+              <% end %>
             </div>
             <div class="col-10">
               <table>
@@ -118,7 +120,7 @@
         </div>
       </div>
     </div>
-      <div class="col-md-3 sidebar">
+      <div class="col-md-3 sidebar border-left">
 　　　 <%= render 'layouts/sidebar', post: @posts %>
 　　　</div>
   </div>

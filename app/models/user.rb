@@ -4,13 +4,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+  validates :email,
+            :nick_name,
+            :first_name,
+            :family_name,
+            :first_name_kana,
+            :family_name_kana,
+            :occupation,
+            :address,
+            :encrypted_password,
+            :generation,
+            :sex,
+            presence: true
+
+
+
   has_many :posts, dependent: :destroy
   has_many :post_assessments, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :comment_assessments, dependent: :destroy
 
   enum occupation: { "職業を選択してください":0, 会社員: 1, 経営者: 2, 自営業: 3, フリーター: 4, 学生: 5, その他: 6 }
-  enum generations: { "年代をを選択してください":0, '10代': 1, '20代': 2, '30代': 3, '40代': 4, '50代': 5, '60代': 6, '70歳以上': 7 }
+  enum generation: { "年代を選択してください":0, '10代': 1, '20代': 2, '30代': 3, '40代': 4, '50代': 5, '60代': 6, '70歳以上': 7 }
   enum sex: { "性別を選択してください":0, 男性: 1, 女性: 2 }
   enum address: {
      "都道府県を選択してください":0,
@@ -25,7 +40,7 @@ class User < ApplicationRecord
      沖縄県:47
   }
 
-
+  # profile_image用
   attachment :profile_image
 
   # omniauthのコールバック時に呼ばれるメソッド

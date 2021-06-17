@@ -1,3 +1,86 @@
 <%= render 'layouts/mainvisual' %>
+<!-- カード -->
 
-<%= link_to 'お問い合わせへはこちらへ', new_inquiry_path %>
+<div class="container py-4 border-bottom border-light" id="skill">
+    <h2>Welcome to FindNewSocial!! We are waiting for sign up and posts.</h2>
+    <p>ようこそFindNewSocialへ！Sign Up後、皆さんの投稿や自分も投稿できる等になります。あなたの1投稿で日本社会の課題が解決に進むかもしれません。</p>
+    <div class="progress">
+        <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Your post might save our future.</div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Your action will make our new future.</div>
+    </div>
+</div>
+
+<div class="container py-5 border-bottom border-light" id="works">
+    <h2>topページへようこそ</h2>
+    <p>当webサイトの使用方法は以下に記載しております。良くお読みください。</p>
+    <div class="card-deck">
+        <div class="card">
+          <%= image_tag "img/top1.jpg" %>
+          <div class="card-body">
+            <h5 class="card-title">テーマ</h5>
+            <p class="card-text">社会に潜む課題を市民目線で気軽につぶやけるアプリ
+            政府や企業が見逃している社会課題への提起や問題発見に 1 人 1 人が貢献できます。</p>
+            <p class="card-text"><small class="text-muted">Last updated 15-Jun-2021</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <%= image_tag "img/top2.jpg" %>
+          <div class="card-body">
+            <h5 class="card-title">ルール</h5>
+            <p class="card-text">個人に対する否定的なコメント、誹謗中傷、知識でのマウントはお断りしております。
+            *3 No 精神
+            <br>① No ネガティブコメント<br>② No 誹謗中傷<br> ③ No マウント</p>
+            <p class="card-text"><small class="text-muted">Last updated 15-Jun-2021</small></p>
+          </div>
+        </div>
+    </div>
+</div>
+<div>
+<table class="top-chart mb-5 border-bottom border-light mb-3">
+  <tr>
+    <td>
+      <h3 class="mt-5">ジャンル別投稿割合</h3>
+      <%= pie_chart Post.group(:genre_id).count, xmin: "2021-01-01", xmax: "2022-01-01", decimal: "," , suffix: "%" %>
+    </td>
+    <td>
+      <h3 class="mt-5">年代別投稿割合</h3>
+      <%= pie_chart Post.joins(:user).group(:generation).count, xmin: "2021-01-01", xmax: "2022-01-01", decimal: "," , suffix: "%" %>
+    </td>
+  </tr>
+</table>
+</div>
+
+<div class="top-card-body">
+  <div class="row main">
+    <div class="col-md-10 post-top">
+      <h2 class="blog-heading text-center mt-5">RecentPostTimeLine</h2>
+      <div class="card-list-containar">
+        <% @favorites.last(5).each do |favorite| %>
+        <div class="card w-auto mx-auto mt-2 shadow-lg">
+          <div class="row card-body">
+            <div class="col-2">
+              <%= attachment_image_tag favorite.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+            </div>
+            <div class="col-10">
+              <table>
+                <tr>
+                  <th class="fas fa-user">User名：<%= favorite.user.nick_name %> | Title : <%= favorite.title %> | ジャンル：<%= favorite.genre_id %> | <%= favorite.created_at.to_s(:datetime_jp) %></th>
+                </tr>
+                <tr>
+                  <td><div class="card-text">投稿：<%= favorite.body %></div></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p class="ml-3 mt-3">当サイトに関してのお問い合わせへは以下へどうぞ</p>
+<%= link_to 'お問い合わせへ', new_inquiry_path, class: 'btn btn-primary mb-3 ml-3' %>

@@ -88,6 +88,7 @@ gem 'omniauth-google-oauth2'
 gem 'chartkick'
 gem 'rails-ujs'
 gem 'dotenv-rails'
+gem 'groupdate'
 
 group :production do
   gem 'mysql2'

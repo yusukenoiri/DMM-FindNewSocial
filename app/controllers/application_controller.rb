@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
       :occupation,
       :address,
       :sex,
-      :generations
+      :generation
       ])
   end
 

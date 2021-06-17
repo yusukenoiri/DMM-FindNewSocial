@@ -1,33 +1,47 @@
-<table>
-  <tbody>
-    <tr>
-      <td class="text-center" style="width: 30%;">お名前</td>
-      <td><%= @inquiry.name %></td>
-    </tr>
-    <tr>
-      <td class="text-center">用件</td>
-      <td style="white-space: pre-wrap;"><%= @inquiry.subject %></td>
-    </tr>
-    <tr>
-      <td class="text-center">メッセージ</td>
-      <td style="white-space: pre-wrap;"><%= @inquiry.message %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2">
+    <h3 class="mt-3 mb-3">お問い合わせフォーム確認画面</h3>
 
-<%= form_for(@inquiry) do |f| %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :email %>
-  <%= f.hidden_field :phone_number %>
-  <%= f.hidden_field :subject %>
-  <%= f.hidden_field :message %>
-  <div><%= f.submit '送信' %></div>
-<% end %>
-<%= form_for @inquiry, url: back_path do |f| %>
-  <%= f.hidden_field :name %>
-  <%= f.hidden_field :email %>
-  <%= f.hidden_field :phone_number %>
-  <%= f.hidden_field :subject %>
-  <%= f.hidden_field :message %>
-  <div><%= f.submit '入力画面に戻る' %></div>
-<% end %>
+    <table class="table table-bordered">
+      <tbody>
+        <tr class="pt-3 pb-3">
+          <td class="text-left" style="width: 30%;">お名前 : </td>
+          <td class="mt-3 mb-3"><%= @inquiry.name %></td>
+        </tr>
+        <tr class="mt-3 mb-3 ">
+          <td class="text-left">Mail : </td>
+          <td style="white-space: pre-wrap;"><%= @inquiry.email %></td>
+        </tr>
+        <tr class="mt-3 mb-3 ">
+          <td class="text-left">Tel : </td>
+          <td style="white-space: pre-wrap;"><%= @inquiry.phone_number %></td>
+        </tr>
+        <tr class="mt-3 mb-3 ">
+          <td class="text-left">用件 : </td>
+          <td style="white-space: pre-wrap;"><%= @inquiry.subject %></td>
+        </tr>
+        <tr class="mt-3 mb-3">
+          <td class="text-left">メッセージ内容 : </td>
+          <td style="white-space: pre-wrap;"><%= @inquiry.message %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <%= form_for(@inquiry) do |f| %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :phone_number %>
+      <%= f.hidden_field :subject %>
+      <%= f.hidden_field :message %>
+      <div class="mt-3 mb-3"><%= f.submit '送信' %></div>
+    <% end %>
+    <%= form_for @inquiry, url: back_path do |f| %>
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :email %>
+      <%= f.hidden_field :phone_number %>
+      <%= f.hidden_field :subject %>
+      <%= f.hidden_field :message %>
+      <div class="mt-3 mb-3"><%= f.submit '入力画面に戻る' %></div>
+    <% end %>
+ </div>
+</div>

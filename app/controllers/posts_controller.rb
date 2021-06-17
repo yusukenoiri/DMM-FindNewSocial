@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.generation = current_user.generation
 
       respond_to do |format|
       if @post.save

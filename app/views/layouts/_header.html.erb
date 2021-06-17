@@ -1,4 +1,12 @@
-<header class="sticky-top bg-dark text-white bg-dark text-white pt-2 pb-2">
+<header class="sticky-top bg-dark text-white pt-2 pb-2">
+  <h1 class="heading text-white">
+      FindNewSocial
+  </h1>
+  <div class="social">
+    <i class="fab fa-facebook-square"></i>
+    <i class="fab fa-twitter-square"></i>
+    <i class="fab fa-instagram"></i>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <!--<a class="navbar-brand" href="/"><span><%#= image_tag '#', :size =>'140x70' %></span>-->
@@ -28,7 +36,7 @@
           <%# end %>
         <% else %>
         　<li><%= link_to ' 管理者ログイン', new_admin_session_path ,class: 'nav-link text-white fas fa-user-lock'%></li>
-        　<li><%= link_to ' Home', root_path ,class: 'nav-link text-white-50 fas fa-home' %></li>
+        　<li><%= link_to ' Home', root_path ,class: 'nav-link text-white fas fa-home' %></li>
           <li><%= link_to ' About', homes_about_path ,class: 'nav-link text-white fas fa-store-alt' %></li>
           <li><%= link_to ' TimeLine', posts_path ,class: 'nav-link text-white fas fa-birthday-cake' %></li>
           <li><%= link_to ' LogIn', new_user_session_path,class: 'nav-link text-white fas fa-sign-in-alt'%></li>
