@@ -3,6 +3,7 @@
 <div id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div class="profile-body">
     <div class="row main">
+
       <div class="col-md-9 post">
         <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'sPage</h2>
 
@@ -74,45 +75,103 @@
                         <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
                       </div>
                     </div>
+
                     <div class="col-10">
-                      <table>
-                        <tr>
-                          <th class="fas fa-user">User名：<%= post.user_id %>ジャンル：<%= post.genre_id %><%= post.created_at.to_s(:datetime_jp) %></th>
-                        </tr>
-                        <tr>
-                          <td><div class="card-text">投稿：<%= post.body %></div></td>
-                        </tr>
-                        <tr>
-                          <td>
-                              <% if post.post_favorited_by?(current_user) %>
+                      <div class="row mb-2">
+                        <div class="col-lg-4 fas fa-user"><%= post.user.nick_name %></div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4"><%= post.created_at.to_s(:datetime_jp) %></div>
+                      </div>
+
+                      <div class="row mb-2">
+                        <div class="col-lg-12">タイトル：<%= post.title %></div>
+                        <div class="col-lg-12">投稿：<%= post.body %></div>
+                      </div>
+
+                      <div class="row mb-2">
+                        <% if user_signed_in? %>
+                          <div class="col-lg-3">
+                            <% if post.post_favorited_by?(current_user) %>
                               <p>
-                                  ♥<%= post.post_assessments.count %> いいね
+                                <%= link_to post_post_assessments_path(post), method: :delete do %>
+                                ♥<%= post.post_assessments.count %> いいね
+                                <% end %>
                               </p>
-                              <% else %>
+                            <% else %>
                               <p>
+                                <%= link_to post_post_assessments_path(post), method: :post do %>
                                   ♡<%= post.post_assessments.count %> いいね
+                                <% end %>
                               </p>
                             <% end %>
-                          </td>
-                          <td><div class="far fa-meh">うーん</div></td>
-                          <td>
-                            <%= link_to post_path(post), method: :get do %>
-                            <div>コメント数：<%= post.comments.count %></div>
-                            <% end %>
-                          </td>
-                        </tr>
-                      </table>
+                          </div>
+                        <% else %>
+                          <div class="col-lg-3">
+                            <p>
+                              ♥<%= post.comment_assessments.count %> いいね
+                            </p>
+                          </div>
+                        <% end %>
+
+                        <% if user_signed_in? %>
+                        <div class="col-lg-3">
+                          <% if post.comment_favorited_by?(current_user, post) %>
+                            <p class="far fa-meh">
+                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
+                                <%= post.comment_assessments.count %>うーん
+                              <% end %>
+                            </p>
+                          <% else %>
+                            <p class="far fa-meh">
+                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
+                                <%= post.comment_assessments.count %>うーん
+                              <% end %>
+                            </p>
+                          <% end %>
+                        </div>
+                        <% else %>
+                        <div class="col-lg-3">
+                          <% if post.comment_favorited_by?(current_user, post) %>
+                            <p class="far fa-meh">
+                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
+                                <%= post.comment_assessments.count %>うーん
+                              <% end %>
+                            </p>
+                          <% else %>
+                            <p class="far fa-meh">
+                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
+                                <%= post.comment_assessments.count %>うーん
+                              <% end %>
+                            </p>
+                          <% end %>
+                        </div>
+                        <% end %>
+
+                        <div class="col-lg-3">
+                          <%= link_to post_path(post), method: :get do %>
+                          <div>コメント数：<%= post.comments.count %></div>
+                          <% end %>
+                        </div>
+
+                        <div class="col-lg-3">
+                          <%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %>
+                        </div>
+                      </div>
                     </div>
-                     </div>
-                    </div>
-                <% end %>
+
                   </div>
+                </div>
+                <% end %>
                 </div>
               </div>
             </div>
+          </div>
+
         </div>
-      <div class="col-md-3 sidebar border-left">
-  　　　 <%= render 'layouts/sidebar', post: @posts %>
-  　　　</div>
+
+        <div class="col-md-3 sidebar border-left">
+    　　　 <%= render 'layouts/sidebar', post: @posts %>
+    　　　</div>
+
+      </div>
     </div>
-  </div>

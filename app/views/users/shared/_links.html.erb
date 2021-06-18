@@ -10,9 +10,7 @@
   <div class="row">
     <div class="col">
       <p class="d-inline-flex">登録がお済でない方は</p>
-    </div>
-    <div class="col">
-      <%= link_to "こちら", new_registration_path(resource_name), class:"ml-5" %>
+      <%= link_to "こちら", new_registration_path(resource_name) %>
       <p class="d-lg-inline">から新規登録を行ってください。</p>
     </div>
   </div>
@@ -21,10 +19,9 @@
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <div class="row">
     <div class="col">
-      <p class="d-inline-flex">パスワードをお忘れの方はこちらへ</p>
-    </div>
-    <div class="col">
-　　  <%= link_to "こちらからパスワードのリセット", new_password_path(resource_name) %><br />
+      <p class="d-inline-flex">パスワードをお忘れの方は</p>
+　　  <%= link_to "こちら", new_password_path(resource_name) %>
+      <p class="d-lg-inline">からパスワードのリセット。</p>
     </div>
   </div>
 <% end %>

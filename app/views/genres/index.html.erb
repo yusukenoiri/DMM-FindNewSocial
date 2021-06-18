@@ -7,44 +7,44 @@
     <div class="col-md-9 genre-post">
       <h2 class="blog-heading text-center mt-3">GenresPostTimeLine</h2>
 
-          <div class="wrap">
-            <ul id="tab-menu">
-              <li><a href="#tab0" class="active">公共交通</a></li>
-              <li><a href="#tab1" class="">インフラ</a></li>
-              <li><a href="#tab2" class="">ヘルスケア</a></li>
-              <li><a href="#tab3" class="">生活</a></li>
-              <li><a href="#tab4" class="">地域</a></li>
-              <li><a href="#tab4" class="">その他</a></li>
-            </ul>
+        <div class="wrap">
+          <ul id="tab-menu">
+            <li><a href="#tab0" class="active">公共交通</a></li>
+            <li><a href="#tab1" class="">インフラ</a></li>
+            <li><a href="#tab2" class="">ヘルスケア</a></li>
+            <li><a href="#tab3" class="">生活</a></li>
+            <li><a href="#tab4" class="">地域</a></li>
+            <li><a href="#tab4" class="">その他</a></li>
+          </ul>
 
-            <div id="tab-contents">
-              <div id="tab0" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre0%>
-              </div>
-
-              <div id="tab1" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre1%>
-              </div>
-
-              <div id="tab2" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre2%>
-              </div>
-
-              <div id="tab3" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre3%>
-              </div>
-
-              <div id="tab4" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre4%>
-              </div>
-
-              <div id="tab5" class="tab">
-                <%= render 'genres/post' , posts: @posts_genre5%>
-              </div>
-
+          <div id="tab-contents">
+            <div id="tab0" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre0%>
             </div>
+
+            <div id="tab1" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre1%>
+            </div>
+
+            <div id="tab2" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre2%>
+            </div>
+
+            <div id="tab3" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre3%>
+            </div>
+
+            <div id="tab4" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre4%>
+            </div>
+
+            <div id="tab5" class="tab">
+              <%= render 'genres/post' , posts: @posts_genre5%>
+            </div>
+
           </div>
         </div>
+      </div>
       <div class="col-md-3 sidebar">
 　　　 <%= render 'layouts/sidebar', post: @posts %>
 　　　</div>

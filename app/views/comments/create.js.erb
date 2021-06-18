@@ -1,5 +1,5 @@
 <% if @status == 'success' %>
-    $("#comment-append").append("<%= j(render("tr", comment: @comment)) %>");
+    $("#comment-append").prepend("<%= j(render("tr", comment: @comment)) %>");
 <%  elsif @status == 'fail' %>
     alert('error!');
 <% end %>

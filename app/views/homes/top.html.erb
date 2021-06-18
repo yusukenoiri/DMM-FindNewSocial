@@ -2,14 +2,19 @@
 <!-- カード -->
 
 <div class="container py-4 border-bottom border-light" id="skill">
-    <h2>Welcome to FindNewSocial!! We are waiting for sign up and posts.</h2>
-    <p>ようこそFindNewSocialへ！Sign Up後、皆さんの投稿や自分も投稿できる等になります。あなたの1投稿で日本社会の課題が解決に進むかもしれません。</p>
-    <div class="progress">
-        <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Your post might save our future.</div>
-    </div>
-    <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Your action will make our new future.</div>
-    </div>
+  <h2>Welcome to FindNewSocial!! We are waiting for sign up and posts.</h2>
+  <p>ようこそFindNewSocialへ！Sign Up後、皆さんの投稿や自分も投稿できる等になります。あなたの1投稿で日本社会の課題が解決に進むかもしれません。</p>
+  <div class="progress">
+    <div class="progress-bar bg-dark" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Your post might save our future.</div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Your action will make our new future.</div>
+  </div>
+</div>
+
+<div class="text-center">
+  LogInは<%= link_to 'こちら', new_user_session_path %><br>
+  SignUpは<%= link_to 'こちら', new_user_registration_path %>
 </div>
 
 <div class="container py-5 border-bottom border-light" id="works">
@@ -52,34 +57,6 @@
 </table>
 </div>
 
-<div class="top-card-body">
-  <div class="row main">
-    <div class="col-md-10 post-top">
-      <h2 class="blog-heading text-center mt-5">RecentPostTimeLine</h2>
-      <div class="card-list-containar">
-        <% @favorites.last(5).each do |favorite| %>
-        <div class="card w-auto mx-auto mt-2 shadow-lg">
-          <div class="row card-body">
-            <div class="col-2">
-              <%= attachment_image_tag favorite.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
-            </div>
-            <div class="col-10">
-              <table>
-                <tr>
-                  <th class="fas fa-user">User名：<%= favorite.user.nick_name %> | Title : <%= favorite.title %> | ジャンル：<%= favorite.genre_id %> | <%= favorite.created_at.to_s(:datetime_jp) %></th>
-                </tr>
-                <tr>
-                  <td><div class="card-text">投稿：<%= favorite.body %></div></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <p class="ml-3 mt-3">当サイトに関してのお問い合わせへは以下へどうぞ</p>
