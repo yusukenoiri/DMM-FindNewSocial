@@ -90,6 +90,9 @@ gem 'rails-ujs'
 gem 'dotenv-rails'
 gem 'groupdate'
 
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'gon', '~> 6.2.0'
+
 group :production do
   gem 'mysql2'
 end

@@ -9,7 +9,7 @@
       <h2 class="blog-heading text-center mt-1">PostTimeLine</h2>
       <div class="card-list-containar py-1">
         <% @posts.last(10).each do |post| %>
-        <div class="card w-auto mx-auto mt-4 shadow-lg">
+        <div class="card w-auto mx-auto mt-4 shadow-lg scroll-list jscroll">
           <div class="row card-body">
             <div class="col-2 ">
               <%= link_to user_path(post.user_id), method: :get do %>
@@ -28,20 +28,10 @@
               </div>
               <div class="row mb-2">
                 <% if user_signed_in? %>
-                <div class="col-lg-3">
-                  <% if post.post_favorited_by?(current_user) %>
-                    <p>
-                      <%= link_to post_post_assessments_path(post), method: :delete do %>
-                        ♥<%= post.post_assessments.count %> いいね
-                      <% end %>
-                    </p>
-                    <% else %>
-                    <p>
-                      <%= link_to post_post_assessments_path(post), method: :post do %>
-                        ♡<%= post.post_assessments.count %> いいね
-                      <% end %>
-                    </p>
-                  <% end %>
+                <div class="col-lg-3" id="post_assessment_<%= post.id %>">
+                  <!--部分テンプレートでいれる-->
+                  <%= render 'post_assessments/post_assessment', post: post%>
+                  <!--部分テンプレート終わり-->
                 </div>
                   <% else %>
                 <div class="col-lg-3">
@@ -51,20 +41,10 @@
                 </div>
                   <% end %>
                   <% if user_signed_in? %>
-                <div class="col-lg-3">
-                  <% if post.comment_favorited_by?(current_user, post) %>
-                    <p class="far fa-meh">
-                      <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
-                        <%= post.comment_assessments.count %>うーん
-                      <% end %>
-                    </p>
-                    <% else %>
-                    <p class="far fa-meh">
-                      <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
-                        <%= post.comment_assessments.count %>うーん
-                      <% end %>
-                    </p>
-                  <% end %>
+                <div class="col-lg-3" id="comment_assessment_<%= post.id %>">
+                  <!--部分テンプレートでいれる-->
+                  <%= render 'comment_assessments/comment_assessment', post: post%>
+                  <!--部分テンプレート終わり-->
                 </div>
                   <% else %>
                 <div class="col-lg-3">
@@ -78,12 +58,15 @@
                   <div>コメント数：<%= post.comments.count %></div>
                   <% end %>
                 </div>
+                <% if user_signed_in? && @user == current_user %>
                 <div class="col-lg-3">
                   <%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %>
                 </div>
+                <% end %>
               </div>
             </div>
           </div>
+          <%= paginate @posts %>
         </div>
         <% end %>
         <div id="table-append" class="card w-auto mx-auto mt-4 shadow-lg"></div>

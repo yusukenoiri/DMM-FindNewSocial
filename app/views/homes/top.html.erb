@@ -12,10 +12,13 @@
   </div>
 </div>
 
-<div class="text-center">
-  LogInは<%= link_to 'こちら', new_user_session_path %><br>
-  SignUpは<%= link_to 'こちら', new_user_registration_path %>
-</div>
+<% if user_signed_in? %>
+<% else %>
+  <div class="text-center">
+    <h4>LogInは<%= link_to 'こちら', new_user_session_path %><br></h4>
+    <h4>SignUpは<%= link_to 'こちら', new_user_registration_path %></h4>
+  </div>
+<% end %>
 
 <div class="container py-5 border-bottom border-light" id="works">
     <h2>topページへようこそ</h2>
@@ -57,6 +60,12 @@
 </table>
 </div>
 
+<!--chart.jsサンプル用-->
+<h1>ChartSample#index</h1>
+<p>Find me in app/views/chart_sample/index.html.erb</p>
+
+<canvas id="myChart" width="200" height="100"></canvas> ←★追記
+<script>draw_graph();</script> ←★追記
 
 
 <p class="ml-3 mt-3">当サイトに関してのお問い合わせへは以下へどうぞ</p>

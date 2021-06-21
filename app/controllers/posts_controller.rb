@@ -1,6 +1,9 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_user!, except: [ :index]
+
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
   end
 

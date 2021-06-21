@@ -1,0 +1,13 @@
+<% if post.comment_favorited_by?(current_user, post) %>
+  <p class="far fa-meh">
+    <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete, remote: true do %>
+      <%= post.comment_assessments.count %>うーん
+    <% end %>
+  </p>
+  <% else %>
+  <p class="far fa-meh">
+    <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post, remote: true do %>
+      <%= post.comment_assessments.count %>うーん
+    <% end %>
+  </p>
+<% end %>

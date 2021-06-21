@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery3
+//= require Chart.min
 //= require rails-ujs
+//= require jquery.jscroll.min.js
 
 //= require turbolinks
 //= require activestorage

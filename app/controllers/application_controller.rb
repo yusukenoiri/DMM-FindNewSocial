@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters , if: :devise_controller?
 
+  # アクセス制限用
+  def authenticate_user
+    if @current_user==nil
+      flash[:notice]="ログインが必要です"
+      redirect_to new_user_session_path
+    end
+  end
+
   def after_sign_in_path_for(resource)
     case resource
     when Admin
@@ -19,6 +27,7 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+
 
   protected
 

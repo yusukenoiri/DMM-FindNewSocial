@@ -68,7 +68,7 @@
               <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'s PostHistory</h2>
               <div class="card-list-containar py-5">
                 <% @user_posts.last(10).each do |post| %>
-                <div class="card w-auto mx-auto mt-4 shadow-lg">
+                <div class="card w-auto mx-auto mt-4 shadow-lg scroll-list jscroll">
                   <div class="row card-body">
                     <div class="col-2">
                       <div class="rounded-circle">
@@ -160,6 +160,7 @@
                     </div>
 
                   </div>
+                  <%= paginate @posts %>
                 </div>
                 <% end %>
                 </div>
