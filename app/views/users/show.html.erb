@@ -1,5 +1,6 @@
 <%= render 'layouts/mainvisual', user: @user %>
 <div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="profile-edit-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
   <div class="profile-body">
     <div class="row main">
@@ -8,10 +9,10 @@
         <h2 class="blog-heading text-center mt-3"><%= @user.nick_name %>'sPage</h2>
 
         <% if user_signed_in? && @user == current_user %>
-        <div><%= link_to "edit", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
+        <div class="ml-1 mb-2"><%= link_to "EditProfile", edit_user_path(@user), remote: true, class: "btn btn-lg, btn-primary" %></div>
         <% end %>
 
-        <div class="container">
+        <div class="container ml-1">
           <div class="row">
             <div class="col-md-4 border">
               <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
@@ -25,7 +26,7 @@
           </div>
         </div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered ml-1">
           <tbody>
             <tr>
               <td class="col-xs-2 table-secondary">ニックネーム</td>
@@ -90,21 +91,11 @@
 
                       <div class="row mb-2">
                         <% if user_signed_in? %>
-                          <div class="col-lg-3">
-                            <% if post.post_favorited_by?(current_user) %>
-                              <p>
-                                <%= link_to post_post_assessments_path(post), method: :delete do %>
-                                ♥<%= post.post_assessments.count %> いいね
-                                <% end %>
-                              </p>
-                            <% else %>
-                              <p>
-                                <%= link_to post_post_assessments_path(post), method: :post do %>
-                                  ♡<%= post.post_assessments.count %> いいね
-                                <% end %>
-                              </p>
-                            <% end %>
-                          </div>
+                        <div class="col-lg-3" id="post_assessment_<%= post.id %>">
+                          <!--部分テンプレートでいれる-->
+                          <%= render 'post_assessments/post_assessment', post: post%>
+                          <!--部分テンプレート終わり-->
+                        </div>
                         <% else %>
                           <div class="col-lg-3">
                             <p>
@@ -114,20 +105,10 @@
                         <% end %>
 
                         <% if user_signed_in? %>
-                        <div class="col-lg-3">
-                          <% if post.comment_favorited_by?(current_user, post) %>
-                            <p class="far fa-meh">
-                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :delete do %>
-                                <%= post.comment_assessments.count %>うーん
-                              <% end %>
-                            </p>
-                          <% else %>
-                            <p class="far fa-meh">
-                              <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
-                                <%= post.comment_assessments.count %>うーん
-                              <% end %>
-                            </p>
-                          <% end %>
+                        <div class="col-lg-3" id="comment_assessment_<%= post.id %>">
+                          <!--部分テンプレートでいれる-->
+                          <%= render 'comment_assessments/comment_assessment', post: post%>
+                          <!--部分テンプレート終わり-->
                         </div>
                         <% else %>
                         <div class="col-lg-3">
@@ -140,7 +121,7 @@
                           <% else %>
                             <p class="far fa-meh">
                               <%= link_to post_comment_comment_assessments_path(post,post.comments), method: :post do %>
-                                <%= post.comment_assessments.count %>うーん
+                                ★<%= post.comment_assessments.count %>うーん
                               <% end %>
                             </p>
                           <% end %>

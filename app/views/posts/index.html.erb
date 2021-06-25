@@ -41,15 +41,15 @@
                 </div>
                   <% end %>
                   <% if user_signed_in? %>
-                <div class="col-lg-3" id="comment_assessment_<%= post.id %>">
+                <div class="col-lg-3" id="post_negative_assessment_<%= post.id %>">
                   <!--部分テンプレートでいれる-->
-                  <%= render 'comment_assessments/comment_assessment', post: post%>
+                  <%= render 'post_negative_assessments/post_negative_assessment', post: post%>
                   <!--部分テンプレート終わり-->
                 </div>
                   <% else %>
                 <div class="col-lg-3">
-                  <p class="far fa-meh">
-                    <%= post.comment_assessments.count %>うーん
+                  <p class="">
+                    ★<%= post.comment_assessments.count %>うーん
                   </p>
                 </div>
                   <% end %>
@@ -58,11 +58,9 @@
                   <div>コメント数：<%= post.comments.count %></div>
                   <% end %>
                 </div>
-                <% if user_signed_in? && @user == current_user %>
                 <div class="col-lg-3">
                   <%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %>
                 </div>
-                <% end %>
               </div>
             </div>
           </div>

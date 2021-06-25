@@ -17,12 +17,13 @@ class User < ApplicationRecord
             :sex,
             presence: true
 
-
-
   has_many :posts, dependent: :destroy
   has_many :post_assessments, dependent: :destroy
+  has_many :post_negative_assessments, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :comment_assessments, dependent: :destroy
+  has_many :comment_negative_assessments, dependent: :destroy
+
 
   enum occupation: { "職業を選択してください":0, 会社員: 1, 経営者: 2, 自営業: 3, フリーター: 4, 学生: 5, その他: 6 }
   enum generation: { "年代を選択してください":0, '10代': 1, '20代': 2, '30代': 3, '40代': 4, '50代': 5, '60代': 6, '70歳以上': 7 }

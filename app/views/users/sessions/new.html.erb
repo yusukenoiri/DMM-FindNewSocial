@@ -1,54 +1,58 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="footer-fixed">
 
-<div class="row">
-  <div class="input-group">
-    <div class="col-lg-5 input-group-prepend offset-md-1">
-    <h2 class="card-title text-center mb-4 mt-1">ログイン</h2>
-    </div>
-  </div>
-</div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="row mt-3">
+  <div class="row">
     <div class="input-group">
       <div class="col-lg-5 input-group-prepend offset-md-1">
-        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
-      </div>
-    </div>
-  </div><br>
-
-  <div class="row mt-2">
-    <div class="input-group">
-      <div class="col-lg-5 input-group-prepend offset-md-1">
-        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: "password"%>
+      <h2 class="card-title text-center mb-4 mt-1">ログイン</h2>
       </div>
     </div>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-  <div class="row mt-4">
-    <div class="input-group">
-      <div class="col-lg-5 input-group-prepend offset-md-1">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="row mt-3">
+      <div class="input-group">
+        <div class="col-lg-5 input-group-prepend offset-md-1">
+          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email address" %>
+        </div>
+      </div>
+    </div><br>
+
+    <div class="row mt-2">
+      <div class="input-group">
+        <div class="col-lg-5 input-group-prepend offset-md-1">
+          <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "password"%>
+        </div>
       </div>
     </div>
-  </div>
+
+    <% if devise_mapping.rememberable? %>
+    <div class="row mt-4">
+      <div class="input-group">
+        <div class="col-lg-5 input-group-prepend offset-md-1">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <div class="row mt-3">
+      <div class="input-group">
+        <div class="col-lg-5 input-group-prepend offset-md-1">
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 
-  <div class="row mt-3">
-    <div class="input-group">
-      <div class="col-lg-5 input-group-prepend offset-md-1">
-        <%= f.submit "ログイン", class: "btn btn-primary" %>
-      </div>
+  <div class="row">
+    <div class="col-lg-5 text-center">
+  　　<%= render "users/shared/links" %>
     </div>
   </div>
 
-<% end %>
-
-<div class="row">
-  <div class="col-lg-5 text-center">
-　　<%= render "users/shared/links" %>
-  </div>
 </div>

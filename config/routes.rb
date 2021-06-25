@@ -25,8 +25,10 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :new, :create, :destroy, :show] do
     resource :post_assessments, only: [:create, :destroy]
+    resource :post_negative_assessments, only: [:create, :destroy]
     resources :comments, only: [:update, :create, :destroy, :new] do
       resource :comment_assessments, only: [:create, :destroy]
+      resource :comment_negative_assessments, only: [:create, :destroy]
     end
   end
 
@@ -46,5 +48,6 @@ Rails.application.routes.draw do
 
   root :to => 'homes#top'
   get 'homes/about'
+  get 'news/data'
 
 end

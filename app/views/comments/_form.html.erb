@@ -18,8 +18,11 @@
           </button>
         </div>
 
+        <div class="ml-3">To : <div class="fas fa-user"></div> <%= @post.user.nick_name %></div>
+        <div class="ml-3">タイトル : <%= @post.title %></div>
+
         <div class="modal-body">
-          <div class="form-group field">
+          <div class="form-group field mb-3">
             <%= f.text_area :body, class: "form-control", placeholder:"Comment here" %>
           </div>
         </div>

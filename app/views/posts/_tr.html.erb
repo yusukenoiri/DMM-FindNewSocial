@@ -67,7 +67,7 @@
         <% else %>
           <p class="far fa-meh">
             <%= link_to post_comment_comment_assessments_path(@post,@post.comments), method: :post do %>
-              <%= @post.comment_assessments.count %>うーん
+              ★<%= @post.comment_assessments.count %>うーん
             <% end %>
           </p>
         <% end %>

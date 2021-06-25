@@ -1,0 +1,2 @@
+module PostNegativeAssessmentsHelper
+end

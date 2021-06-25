@@ -1,0 +1,13 @@
+<% if post.post_negative_assessment_by?(current_user) %>
+  <p>
+    <%= link_to post_post_negative_assessments_path(post), method: :delete, remote: true do %>
+      ★<%= post.post_negative_assessments.count %>うーん
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_post_negative_assessments_path(post), method: :post, remote: true do %>
+      ☆<%= post.post_negative_assessments.count %>うーん
+    <% end %>
+  </p>
+<% end %>

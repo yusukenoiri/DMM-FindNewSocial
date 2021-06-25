@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap";
+@import 'bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
@@ -26,17 +26,17 @@
   font-family: "Lato", "Sans JP";
 }
 
+header,.footer {
+  font-family: "Lato", Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+  // background-color: #323232;
+}
+
 /*main*/
 main {
   width: 100%; /* 横幅いっぱい */
   justify-content: center; /* 子要素の横並び・中央寄せ */
   margin: 0 auto; /* 中央寄せ（左右に余白がないとできない） */
   flex: 1;
-}
-
-header,.footer {
-  font-family: "Lato", Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
-  // background-color: #323232;
 }
 
 /* header */
@@ -183,7 +183,6 @@ header .heading {
 /*genre*/
 .wrap {
   width: 100%;
-  max-width: 800px;
   margin: 0 auto;
   padding: 0;
 }
@@ -241,4 +240,14 @@ nav.pagination {
 
 .scroll-list {
   padding: 0;
+}
+
+.footer-fixed {
+  height: 550px;
+
+}
+
+.news-image {
+  height: 60px;
+  width: 60px;
 }
