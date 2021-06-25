@@ -23,6 +23,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_assessments, dependent: :destroy
   has_many :comment_negative_assessments, dependent: :destroy
+  
+  
 
 
   enum occupation: { "職業を選択してください":0, 会社員: 1, 経営者: 2, 自営業: 3, フリーター: 4, 学生: 5, その他: 6 }

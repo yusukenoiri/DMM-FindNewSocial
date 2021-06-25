@@ -1,4 +1,5 @@
 class CommentAssessment < ApplicationRecord
+
   belongs_to :comment
 
   def comment_favorited_by?(user, comment)

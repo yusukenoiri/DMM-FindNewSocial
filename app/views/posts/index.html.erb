@@ -1,5 +1,7 @@
 <div id="comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
 <!--main-visual部分-->
 <%= render 'layouts/mainvisual', post: @posts %>
 <!--投稿カード部分-->
@@ -49,18 +51,23 @@
                   <% else %>
                 <div class="col-lg-3">
                   <p class="">
-                    ★<%= post.comment_assessments.count %>うーん
+                    ★<%= post.post_negative_assessments.count %>うーん
                   </p>
                 </div>
                   <% end %>
                 <div class="col-lg-3">
-                  <%= link_to post_path(post), method: :get do %>
+                  <%= link_to post_path(post), method: :get, remote: true do %>
                   <div>コメント数：<%= post.comments.count %></div>
                   <% end %>
                 </div>
+                <% if user_signed_in? %>
                 <div class="col-lg-3">
                   <%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %>
                 </div>
+                <% else %>
+                <div class="col-lg-3">
+                </div>
+                <% end %>
               </div>
             </div>
           </div>

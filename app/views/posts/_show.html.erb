@@ -1,0 +1,132 @@
+<div id="comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="post-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<!--投稿カード部分-->
+<div class="modal-dialog modal-dialog-scrollable modal-dialog-fluid" role="document">
+  <div class="modal-content">
+    <div class="card-body">
+      <div class="row main">
+        <div class="col post mx-auto">
+          <div class="card-list-containar py-1">
+            <div class="card w-auto mx-auto shadow-lg">
+              <div class="modal-header">
+                <h2 class="modal-title text-center mt-1">PostShow</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="row card-body">
+                <div class="col-2">
+                  <%= link_to user_path(@post.user_id), method: :get do %>
+                    <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+                  <% end %>
+                </div>
+                <div class="col-10">
+                  <div class="row mb-2">
+                    <div class="col-lg-4 fas fa-user"><%= @post.user.nick_name %></div>
+                    <div class="col-lg-4"><%= @post.genre_id %></div>
+                    <div class="col-lg-4"><%= @post.created_at.to_s(:datetime_jp) %></div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-lg-12">タイトル：<%= @post.title %></div>
+                    <div class="col-lg-12">投稿：<%= @post.body %></div>
+                  </div>
+                    <div class="row mb-2">
+                    <% if user_signed_in? %>
+                    <div class="col-lg-3" id="post_assessment_<%= @post.id %>">
+                      <!--部分テンプレートでいれる-->
+                      <%= render 'post_assessments/post_assessment', post: @post%>
+                      <!--部分テンプレート終わり-->
+                    </div>
+                      <% else %>
+                    <div class="col-lg-3">
+                      <p>
+                        ♥<%= @post.post_assessments.count %> いいね
+                      </p>
+                    </div>
+                      <% end %>
+                      <% if user_signed_in? %>
+                    <div class="col-lg-3" id="post_negative_assessment_<%= @post.id %>">
+                      <!--部分テンプレートでいれる-->
+                      <%= render 'post_negative_assessments/post_negative_assessment', post: @post%>
+                      <!--部分テンプレート終わり-->
+                    </div>
+                      <% else %>
+                    <div class="col-lg-3">
+                      <p class="far fa-meh">
+                        ★<%= @post.comment_assessments.count %>うーん
+                      </p>
+                    </div>
+                      <% end %>
+                    <div class="col-lg-3">
+                      <%= link_to post_path(@post), method: :get do %>
+                      <div>コメント数：<%= @post.comments.count %></div>
+                      <% end %>
+                    </div>
+                    <div class="col-lg-3">
+                      <%= link_to "コメントする", new_post_comment_path(@post), remote: true, class: "btn btn-lg, btn-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--ここからコメント-->
+              <h3 class="blog-heading text-center mt-3">PostComment</h3>
+
+              <% @comments.last(10).each do |comment| %>
+              <div class="row comment-card-body">
+
+                <div class="col-2">
+                  <%= link_to user_path(comment.user_id), method: :get do %>
+                    <%= attachment_image_tag comment.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", style: "border-radius:50%;}" %>
+                  <% end %>
+                </div>
+
+                <div class="col-10">
+                  <div class="row mb-2">
+                    <div class="col-lg-4 fas fa-user"><%= comment.user.nick_name %></div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4"><%= comment.created_at.to_s(:datetime_jp) %></div>
+                  </div>
+                  <div class="row mb-2">
+                    <div class="col-lg-12">コメント：<%= comment.body %></div>
+                  </div>
+                      <div class="row mb-2">
+                    <% if user_signed_in? %>
+                    <div class="col-lg-3" id="comment_assessment_<%= comment.id %>">
+                      <!--部分テンプレートでいれる-->
+                      <%= render 'comment_assessments/comment_assessment', comment: comment, post: @post %>
+                      <!--部分テンプレート終わり-->
+                    </div>
+                      <% else %>
+                    <div class="col-lg-3">
+                      <p>
+                        ♥<%= comment.comment_assessments.count %> いいね
+                      </p>
+                    </div>
+                      <% end %>
+                      <% if user_signed_in? %>
+                        <div class="col-lg-3" id="comment_negative_assessment_<%= comment.id %>">
+                          <!--部分テンプレートでいれる-->
+                          <%= render 'comment_negative_assessments/comment_negative_assessment', comment: comment, post: @post %>
+                          <!--部分テンプレート終わり-->
+                        </div>
+                      <% else %>
+                    <div class="col-lg-3">
+                      <p class="far fa-meh">
+                        <%= @post.comment_assessments.count %>うーん
+                      </p>
+                    </div>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+              <div id="comment-append" class="comment-card-body"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

@@ -20,12 +20,10 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to @post, notice: 'Cooment was successfully created.' }
         format.json { render :show, status: :created, location: @post }
-        # 追加
         format.js { @status = "success" }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
-        # 追加
         format.js { @status = "fail" }
       end
     end

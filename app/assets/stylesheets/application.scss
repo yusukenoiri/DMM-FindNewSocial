@@ -244,10 +244,16 @@ nav.pagination {
 
 .footer-fixed {
   height: 550px;
-
 }
 
+// news画像の大きさ
 .news-image {
   height: 60px;
   width: 60px;
+}
+
+// コメントモーダルの幅を広げる
+.modal-dialog-fluid {
+  max-width: inherit;
+  width: 75%;
 }

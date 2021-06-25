@@ -15,12 +15,10 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
-        # 追加
         format.js { @status = "success" }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        # 追加
         format.js { @status = "fail" }
       end
     end
