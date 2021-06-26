@@ -1,6 +1,6 @@
 <% if @status == 'success' %>
     $("#table-append").append("<%= j(render("tr", post: @post)) %>");
 <%  elsif @status == 'fail' %>
-    alert('error!');
+    alert('Error Please fill in all contents!');
 <% end %>
 $("#post-modal").modal("hide");

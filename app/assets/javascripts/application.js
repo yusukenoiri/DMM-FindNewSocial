@@ -21,6 +21,7 @@
 //= require bootstrap-sprockets
 //= require chartkick
 //= require Chart.bundle
+// = require data-confirm-modal
 
 //= require_tree .
 

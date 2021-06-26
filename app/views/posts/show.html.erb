@@ -17,7 +17,7 @@
             </div>
             <div class="col-10">
               <div class="row mb-2">
-                <div class="col-lg-4 fas fa-user"><%= @post.user.nick_name %></div>
+                <div class="col-lg-4 fas fa-user"><%= link_to user_path(@post.user_id), method: :get do %><%= @post.user.nick_name %><% end %></div>
                 <div class="col-lg-4"><%= @post.genre_id %></div>
                 <div class="col-lg-4"><%= @post.created_at.to_s(:datetime_jp) %></div>
               </div>
@@ -62,7 +62,8 @@
                 </div>
                 <% if user_signed_in? %>
                 <div class="col-lg-3">
-                  <%= link_to "削除する", post_path(@post), method: :delete, class: "btn btn-lg, btn-danger" %>
+                  <%= link_to "削除する", post_path(@post), method: :delete, class: "btn btn-lg, btn-danger", data:
+                  { confirm: "Are you sure to delete?", cancel: "Cancel", commit: "Delete"}, title: "Confirmation" %>
                 </div>
                 <% else %>
                 <div class="col-lg-3">
@@ -85,7 +86,7 @@
 
             <div class="col-10">
               <div class="row mb-2">
-                <div class="col-lg-4 fas fa-user"><%= comment.user.nick_name %></div>
+                <div class="col-lg-4 fas fa-user"><%= link_to user_path(@post.user_id), method: :get do %><%= comment.user.nick_name %><% end %></div>
                 <div class="col-lg-4"></div>
                 <div class="col-lg-4"><%= comment.created_at.to_s(:datetime_jp) %></div>
               </div>
@@ -123,7 +124,8 @@
                   </div>
                   <% if user_signed_in? %>
                   <div class="col-lg-3">
-                    <%= link_to "削除する", post_comment_path(@post, comment), method: :delete, class: "btn btn-lg, btn-danger" %>
+                    <%= link_to "削除する", post_comment_path(@post, comment), method: :delete, class: "btn btn-lg, btn-danger", data:
+                    { confirm: "Are you sure to delete?", cancel: "Cancel", commit: "Delete"}, title: "Confirmation" %>
                   </div>
                   <% else %>
                   <div class="col-lg-3">

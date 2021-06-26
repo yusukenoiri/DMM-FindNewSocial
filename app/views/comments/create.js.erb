@@ -1,6 +1,6 @@
 <% if @status == 'success' %>
     $("#comment-append").prepend("<%= j(render("tr", comment: @comment)) %>");
 <%  elsif @status == 'fail' %>
-    alert('error!');
+    alert('Error! Please fill in all! conten');
 <% end %>
 $("#comment-modal").modal("hide");

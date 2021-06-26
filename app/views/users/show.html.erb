@@ -79,7 +79,7 @@
 
                     <div class="col-10">
                       <div class="row mb-2">
-                        <div class="col-lg-4 fas fa-user"><%= post.user.nick_name %></div>
+                        <div class="col-lg-4 fas fa-user"><%= link_to user_path(post.user_id), method: :get do %><%= post.user.nick_name %><% end %></div>
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4"><%= post.created_at.to_s(:datetime_jp) %></div>
                       </div>
