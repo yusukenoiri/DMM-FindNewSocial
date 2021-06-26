@@ -21,6 +21,7 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Cooment was successfully created.' }
         format.json { render :show, status: :created, location: @post }
         format.js { @status = "success" }
+        flash[:notice] = "Post was successfully created."
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -29,7 +30,14 @@ class PostsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
+    post = Post.find(params[:id])
+    if post.destroy
+      flash[:notice] = "Post was successfully destroyed."
+      redirect_to posts_path
+    else
+      render "index"
+    end
   end
 
   def search

@@ -24,7 +24,14 @@ class CommentsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
+    comment = Comment.find(params[:id])
+    if comment.destroy
+      flash[:notice] = "Comment was successfully destroyed."
+      redirect_to post_path(comment.post_id)
+    else
+      render template: "posts/show"
+    end
   end
 
   private

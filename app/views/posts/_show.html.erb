@@ -117,6 +117,17 @@
                       </p>
                     </div>
                       <% end %>
+                    <div class="col-lg-3">
+                    </div>
+                    <% if user_signed_in? %>
+                    <div class="col-lg-3">
+                      <%= link_to "削除する", post_comment_path(@post, comment), method: :delete, class: "btn btn-lg, btn-danger" %>
+                    </div>
+                    <% else %>
+                    <div class="col-lg-3">
+                    </div>
+                    <% end %>
+
                   </div>
                 </div>
               </div>
