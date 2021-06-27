@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:user_id])
+    @post = Post.find(params[:id])
     @posts = Post.all.order(created_at: :desc)
     @comments = @post.comments
     @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
