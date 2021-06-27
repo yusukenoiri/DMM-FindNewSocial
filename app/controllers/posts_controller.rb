@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
     @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @user = User.find(current_user.id)
   end
 
   def new
@@ -49,10 +50,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:user_id])
     @posts = Post.all.order(created_at: :desc)
     @comments = @post.comments
     @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @user = User.find(current_user.id)
   end
 
   def post_params

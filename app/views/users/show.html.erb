@@ -128,7 +128,7 @@
                           <%= link_to "コメントする", new_post_comment_path(post), remote: true, class: "btn btn-lg, btn-primary" %>
                         </div>
 
-                        <% if user_signed_in? %>
+                        <% if user_signed_in? && @user == current_user %>
                         <div class="col-lg-3">
                           <%= link_to "削除する", post_path(post), method: :delete, class: "btn btn-lg, btn-danger" %>
                         </div>
