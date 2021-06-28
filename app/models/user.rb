@@ -23,8 +23,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comment_assessments, dependent: :destroy
   has_many :comment_negative_assessments, dependent: :destroy
-  
-  
+
+
 
 
   enum occupation: { "職業を選択してください":0, 会社員: 1, 経営者: 2, 自営業: 3, フリーター: 4, 学生: 5, その他: 6 }
@@ -51,6 +51,16 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      user.nick_name = "no name"
+      user.first_name = "no name"
+      user.family_name = "no name"
+      user.first_name_kana = "no name"
+      user.family_name_kana = "no name"
+      user.occupation = 1
+      user.address = 1
+      user.phone_number = "no number"
+      user.generation = 1
+      user.sex = 1
     end
   end
 
