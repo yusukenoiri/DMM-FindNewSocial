@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_posts = @user.posts.order(created_at: :desc)
     @posts =Post.all.order(created_at: :desc).page(params[:page]).per(10)
-    @favorites = Post.find(PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    @favorites = Post.find_by(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
   end
 
   def edit
