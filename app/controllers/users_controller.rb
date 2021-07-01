@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user_posts = @user.posts.order(created_at: :desc)
     @posts =Post.all.order(created_at: :desc).page(params[:page]).per(10)
-    @favorites = Post.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    posts = Post.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day)
+    @favorites = posts.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    # @post_today = Post.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day)
+    # @post_yesterday = Post.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day)
   end
 
   def edit

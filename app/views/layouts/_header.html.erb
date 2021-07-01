@@ -11,6 +11,14 @@
     <div class="container">
       <!--<a class="navbar-brand" href="/"><span><%#= image_tag '#', :size =>'140x70' %></span>-->
       <!--</a>-->
+      <div class="text-white">
+        <% if admin_signed_in? %>
+          <p>管理者Login中</p>
+        <% elsif user_signed_in? %>
+          <p class="fas fa-user"><%= current_user.nick_name %></p>
+        <% else %>
+        <% end %>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -19,6 +27,7 @@
         <% if admin_signed_in? %>
           <li><%= link_to ' Posts', admin_posts_path,class: 'nav-link text-white' %></li>
           <li><%= link_to ' Genre', admin_genres_path ,class: 'nav-link text-white'%></li>
+          <li><%= link_to ' Users', admin_users_path ,class: 'nav-link text-white'%></li>
           <li><%= link_to ' LogOut', destroy_admin_session_path, method: :delete,class: 'nav-link text-white' %></li>
           <br>
         <% elsif user_signed_in? %>

@@ -4,12 +4,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
-    @favorites = Post.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
-
+    posts = Post.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day)
+    @favorites = posts.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     if user_signed_in?
      @user = User.find(current_user.id)
     end
-    
+
 
   end
 
@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.score = Language.get_data(post_params[:body])  #この行を追加
     @post.generation = current_user.generation
 
       respond_to do |format|
@@ -58,7 +59,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @posts = Post.all.order(created_at: :desc)
     @comments = @post.comments
-    @favorites = Post.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+    posts = Post.where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day)
+    @favorites = posts.where(id: PostAssessment.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
     @user = User.find(current_user.id)
   end
 

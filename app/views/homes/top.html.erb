@@ -15,8 +15,8 @@
 <% if user_signed_in? %>
 <% else %>
   <div class="text-center">
-    <h4>LogInは<%= link_to 'こちら', new_user_session_path %><br></h4>
-    <h4>SignUpは<%= link_to 'こちら', new_user_registration_path %></h4>
+    <%= link_to 'LogInはこちら', new_user_session_path, class: 'btn btn-primary mb-3 ml-3' %>
+    <%= link_to 'SignUpはこちら', new_user_registration_path, class: 'btn btn-info mb-3 ml-3' %>
   </div>
 <% end %>
 
