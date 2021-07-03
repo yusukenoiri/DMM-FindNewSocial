@@ -9,4 +9,5 @@ class Admin::UsersController < ApplicationController
 
   def update
   end
+  
 end
