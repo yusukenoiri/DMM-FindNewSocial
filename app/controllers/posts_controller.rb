@@ -9,8 +9,6 @@ class PostsController < ApplicationController
     if user_signed_in?
      @user = User.find(current_user.id)
     end
-
-
   end
 
   def new
@@ -20,7 +18,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.score = Language.get_data(post_params[:body])  #この行を追加
+    @post.score = Language.get_data(post_params[:body])  #natural language score用
     @post.generation = current_user.generation
 
       respond_to do |format|
