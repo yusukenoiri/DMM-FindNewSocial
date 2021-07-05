@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'comments/index'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -16,8 +19,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres
     resources :users, only: [:index, :show, :edit, :update]
-    patch ':id/withdraw' => 'users#withdraw', as: 'withdraw_user'
     resources :posts, only: [:index]
+    resources :comments, only: [:index]
+    patch ':id/withdraw' => 'users#withdraw', as: 'withdraw_user'
+    patch ':id/invalid' => 'posts#invalid', as: 'invalid_post'
+    patch ':id/invalid' => 'comments#invalid', as: 'invalid_comment'
   end
 
   namespace :posts do

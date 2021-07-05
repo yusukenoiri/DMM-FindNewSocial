@@ -26,8 +26,9 @@
         <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
           <li><%= link_to ' Posts', admin_posts_path,class: 'nav-link text-white' %></li>
-          <li><%= link_to ' GenreChart', admin_genres_path ,class: 'nav-link text-white'%></li>
+          <li><%= link_to ' Comemnts', admin_comments_path ,class: 'nav-link text-white'%></li>
           <li><%= link_to ' Users', admin_users_path ,class: 'nav-link text-white'%></li>
+          <li><%= link_to ' GenreChart', admin_genres_path ,class: 'nav-link text-white'%></li>
           <li><%= link_to ' LogOut', destroy_admin_session_path, method: :delete,class: 'nav-link text-white' %></li>
           <br>
         <% elsif user_signed_in? %>

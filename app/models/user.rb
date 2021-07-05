@@ -46,7 +46,8 @@ class User < ApplicationRecord
   # profile_image用
   attachment :profile_image
 
-  # omniauthのコールバック時に呼ばれるメソッド
+  # omniauthのコールバック時に呼ばれるメソッド,Gmailでサインインした時は
+  # 　以下の数値をデフォルトで入れておく
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

@@ -37,7 +37,8 @@
                 <% if user.is_valid == false %>
                   <p>強制退会済み</p>
                 <% else %>
-                  <%= link_to "退会させる", admin_withdraw_user_path(user), method: :patch %>
+                  <%= link_to "退会させる", admin_withdraw_user_path(user), method: :patch, class: "btn btn-lg, btn-danger", data:
+                    { confirm: "本当に退会しますか?", cancel: "Cancel", commit: "Delete"}, title: "Confirmation" %>
                 <% end %>
               </td>
             </tr>
