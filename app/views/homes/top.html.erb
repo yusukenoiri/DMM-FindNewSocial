@@ -47,20 +47,7 @@
   </div>
 </div>
 
-<div>
-<table class="top-chart mb-5 border-bottom border-light mb-3">
-  <tr>
-    <td>
-      <h3 class="mt-5">ジャンル別投稿割合</h3>
-      <%= pie_chart Post.group(:genre_id).count, xmin: "2021-01-01", xmax: "2022-01-01", decimal: "," , suffix: "%" %>
-    </td>
-    <td>
-      <h3 class="mt-5">年代別投稿割合</h3>
-      <%= pie_chart Post.joins(:user).group(:generation).count, xmin: "2021-01-01", xmax: "2022-01-01", decimal: "," , suffix: "%" %>
-    </td>
-  </tr>
-</table>
-</div>
+<%= render 'layouts/pie_chart' %>
 
 <p class="ml-3 mt-3">当サイトに関してのお問い合わせへは以下へどうぞ</p>
 <%= link_to 'お問い合わせへ', new_inquiry_path, class: 'btn btn-primary mb-3 ml-3' %>

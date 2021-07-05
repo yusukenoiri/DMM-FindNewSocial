@@ -90,8 +90,8 @@ gem 'rails-ujs'
 gem 'dotenv-rails'
 gem 'groupdate'
 
-gem 'chart-js-rails', '~> 0.1.4'
-gem 'gon', '~> 6.2.0'
+# gem 'chart-js-rails', '~> 0.1.4'
+# gem 'gon', '~> 6.2.0'
 gem 'data-confirm-modal'
 
 group :production do

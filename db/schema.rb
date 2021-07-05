@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_04_035127) do
+ActiveRecord::Schema.define(version: 2021_07_05_014007) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2021_07_04_035127) do
   end
 
   create_table "comment_assessments", force: :cascade do |t|
-    t.integer "status"
     t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", null: false
@@ -49,14 +48,6 @@ ActiveRecord::Schema.define(version: 2021_07_04_035127) do
     t.decimal "score", precision: 5, scale: 3
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "title"
-    t.string "name"
-    t.boolean "is_available", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "inquiries", force: :cascade do |t|
     t.string "name"
     t.string "message"
@@ -68,7 +59,6 @@ ActiveRecord::Schema.define(version: 2021_07_04_035127) do
   end
 
   create_table "post_assessments", force: :cascade do |t|
-    t.integer "status"
     t.integer "user_id"
     t.integer "comment_id"
     t.datetime "created_at", null: false
@@ -115,10 +105,10 @@ ActiveRecord::Schema.define(version: 2021_07_04_035127) do
     t.boolean "is_available", default: false
     t.string "uid"
     t.string "provider"
-    t.integer "generations"
     t.integer "sex"
     t.integer "generation"
     t.string "introduction"
+    t.boolean "is_valid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

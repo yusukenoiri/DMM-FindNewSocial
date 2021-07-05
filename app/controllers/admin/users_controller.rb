@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @users = User.all.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -13,6 +15,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+  end
+
+  def withdraw
+    @user = User.find(params[:id])
+    @user.update(is_valid: false)
+    reset_session
+    redirect_to admin_users_path
   end
 
 end

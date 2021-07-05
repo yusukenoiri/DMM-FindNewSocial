@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres
     resources :users, only: [:index, :show, :edit, :update]
+    patch ':id/withdraw' => 'users#withdraw', as: 'withdraw_user'
     resources :posts, only: [:index]
   end
 

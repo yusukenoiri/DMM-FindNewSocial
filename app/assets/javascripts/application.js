@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery3
-//= require Chart.min
+
 //= require rails-ujs
 //= require jquery.jscroll.min.js
 
@@ -19,8 +19,8 @@
 //= require activestorage
 //= require popper
 //= require bootstrap-sprockets
-//= require chartkick
-//= require Chart.bundle
+//= require Chart.bundle.min.js
+
 // = require data-confirm-modal
 
 //= require_tree .
