@@ -1,5 +1,7 @@
 <div class="card-list-containar">
   <% posts.each do |post| %>
+  <!--postがadmin側で削除された場合非表示にする-->
+  <% if post.is_valid == false %>
     <div class="card w-auto mx-auto mt-4 shadow-lg">
       <div class="row card-body">
         <div class="col-2 ">
@@ -68,5 +70,7 @@
         </div>
       </div>
     </div>
+    <% else %>
+    <% end %>
   <% end %>
 </div>

@@ -11,6 +11,8 @@
       <h2 class="blog-heading text-center mt-1">PostTimeLine</h2>
       <div class="card-list-containar py-1">
         <% @posts.last(10).each do |post| %>
+        <!--postがadmin側で削除された場合非表示にする-->
+        <% if post.is_valid =! false %>
         <div class="card w-auto mx-auto mt-4 shadow-lg scroll-list jscroll">
           <div class="row card-body">
             <div class="col-2 ">
@@ -86,6 +88,8 @@
           </div>
           <%= paginate @posts %>
         </div>
+        <% else %>
+        <% end %>
         <% end %>
         <div id="table-append" class="card w-auto mx-auto mt-4 shadow-lg"></div>
           </div>

@@ -4,7 +4,10 @@
       <h5 class="ml-4 my-4 bg-light d-inline-flex">投稿割合（ジャンル）</h5>
       <canvas id="myChart" width="500" height="500"></canvas>
       <script>
+      // myChartのidを取得し2dを指定
       var ctx = document.getElementById("myChart").getContext('2d');
+      // データを配列でJSON形式で取得（こうしないと上手く取得したデータがChartとリンクしなかった、JSON.parseでオブジェクトで値を返す）
+      // オブジェクト.valuesで値を配列で取得
       var genreIdsCount = JSON.parse('<%= @genre_id_hash.values %>')
       var myPieChart = new Chart(ctx, {
           type: 'pie',
@@ -44,14 +47,16 @@
                           weight: 'bold',
                           size: 15,
                       },
+                      // formatter(第1引数に書式パターン、第2引数に値を指定。)
                       formatter: (value, ctx) => {
-                      // let sum = 0;
-                      // datasets.map(dataset => {
-                      //     sum += dataset.data[ctx.dataIndex];
-                      // });
+                      // let変数宣言
                       let label = ctx.chart.data.labels[ctx.dataIndex];
-                      // let percentage = Math.round((value / sum) * 100) + '%';
-                      return label + '\n' + value + '%';
+                      // console.log(sum(ctx.dataset.data))
+                      let sum = ctx.dataset.data.reduce((sum, key) => {
+                        return sum += key
+                      }, 0)
+                      let percentValue  = Math.round((value / sum) * 100)
+                      return label + '\n' + percentValue + '%';
                       },
                   }
               }
@@ -105,9 +110,16 @@
                           weight: 'bold',
                           size: 15,
                       },
+                      // formatter(第1引数に書式パターン、第2引数に値を指定。)
                       formatter: (value, ctx) => {
+                      // let変数宣言
                       let label = ctx.chart.data.labels[ctx.dataIndex];
-                      return label + '\n' + value + '%';
+                      // console.log(sum(ctx.dataset.data))
+                      let sum = ctx.dataset.data.reduce((sum, key) => {
+                        return sum += key
+                      }, 0)
+                      let percentValue  = Math.round((value / sum) * 100)
+                      return label + '\n' + percentValue + '%';
                       },
                   }
               }

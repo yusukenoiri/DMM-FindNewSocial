@@ -7,7 +7,7 @@ class HomesController < ApplicationController
       @genre_id_hash[post.genre_id] = @genre_id_hash[post.genre_id] + 1
     end
 
-    @generation_id_hash = {"10代"=> 1, "20代"=> 2, "30代"=> 3, "40代"=> 4, "50代"=> 5, "60代"=> 6, "70歳以上"=> 7 }
+    @generation_id_hash = {"10代"=> 0, "20代"=> 0, "30代"=> 0, "40代"=> 0, "50代"=> 0, "60代"=> 0, "70歳以上"=> 0 }
     @posts.each do |post|
       @generation_id_hash[post.generation] = @generation_id_hash[post.generation] + 1
     end

@@ -77,6 +77,8 @@
           <h3 class="blog-heading text-center mt-3">PostComment</h3>
 
           <% @comments.last(10).each do |comment| %>
+          <!--commentがadmin側で削除された場合非表示にする-->
+          <% if comment.is_valid =! false %>
           <div class="row comment-card-body">
 
             <div class="col-2">
@@ -138,6 +140,8 @@
               </div>
             </div>
           </div>
+          <% else %>
+          <% end %>
           <% end %>
           <div id="comment-append" class="comment-card-body"></div>
         </div>

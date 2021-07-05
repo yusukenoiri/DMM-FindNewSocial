@@ -43,14 +43,16 @@
                           weight: 'bold',
                           size: 15,
                       },
+                      // formatter(第1引数に書式パターン、第2引数に値を指定。)
                       formatter: (value, ctx) => {
-                      // let sum = 0;
-                      // datasets.map(dataset => {
-                      //     sum += dataset.data[ctx.dataIndex];
-                      // });
+                      // let変数宣言
                       let label = ctx.chart.data.labels[ctx.dataIndex];
-                      // let percentage = Math.round((value / sum) * 100) + '%';
-                      return label + '\n' + value + '%';
+                      // console.log(sum(ctx.dataset.data))
+                      let sum = ctx.dataset.data.reduce((sum, key) => {
+                        return sum += key
+                      }, 0)
+                      let percentValue  = Math.round((value / sum) * 100)
+                      return label + '\n' + percentValue + '%';
                       },
                   }
               }
