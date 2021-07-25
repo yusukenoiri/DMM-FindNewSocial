@@ -22,5 +22,5 @@ $(document).on('turbolinks:load',function() {
   		countCookie : 1000
   		// <!--//何回目のアクセスまで適用するか(cookie保存期間でリセット)-->
   	});
-  })
-}:
+  });
+})
