@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.score = Language.get_data(post_params[:body])  #natural language score用
     @post.generation = current_user.generation
+    @post.is_valid = false
 
       respond_to do |format|
       if @post.save
