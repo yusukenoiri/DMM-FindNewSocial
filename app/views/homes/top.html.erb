@@ -23,9 +23,7 @@
   </div>
 </div>
 
-<% if admin_signed_in? %>
-<% elsif user_signed_in? %>
-<% else %>
+<% if !admin_signed_in? && !user_signed_in? %>
   <div class="text-center">
     <%= link_to 'LogInはこちら', new_user_session_path, class: 'btn btn-primary mb-3 ml-3' %>
     <%= link_to 'SignUpはこちら', new_user_registration_path, class: 'btn btn-info mb-3 ml-3' %>

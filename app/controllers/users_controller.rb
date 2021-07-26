@@ -39,12 +39,10 @@ class UsersController < ApplicationController
         redirect_to user_path(@user)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :created, location: @user }
-        # 追加
         format.js { @status = "success" }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
-        # 追加
         format.js { @status = "fail" }
       end
     end
